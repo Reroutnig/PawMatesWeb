@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <form id="MainForm">
+        <div>
+            <h3>Home</h3>
+            <h3><a href=profile.html>Profile</a></h3>
+         
+        </div>
+    </form>
+    
+    <h3 id="greet"></h3>
+    <script>
+        //gets the user credentials
+        let UserCreds = JSON.parse(sessionStorage.getItem("user-credentials"));
+        //gets user's info
+        let UserInfo = JSON.parse(sessionStorage.getItem("user-info"));
+
+        //references
+        let GreetHead = document.getElementById('greet');
+        let SignoutButton = document.getElementById('signoutbtn');
+
+        let Signout = ()=>{
+            sessionStorage.removeItem("user-credentials");
+            sessionStorage.removeItem("user-info");
+            window.location.href = 'login.html';
+
+        }
+
+        //checks if session storage has the user credentials
+        let CheckCred = ()=>{
+            if(!sessionStorage.getItem("user-credentials"))
+            window.location.href = 'login.html';
+        else{
+                
+        GreetHead.innerText = `Welcome back ${UserInfo.Username}!`;
+            }
+        }
+
+        window.addEventListener('load', CheckCred);
+        SignoutButton.addEventListener('click', Signout);
+
+
+    </script>
+</body>
+</html>
