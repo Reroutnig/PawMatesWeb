@@ -9,7 +9,9 @@
     <div>
         <form id="ProfileForm">
             <h3>Editing Profile...</h3>
-            <input type="text" placeholder="Bio" id="bioInp"> <!--Text area to enter bio-->
+
+            <!--Text area to enter bio-->
+            <textarea placeholder="Write a quick bio to tell others about yourself!" id="bioInp"></textarea>
 
             <!--Checkboxes to select availability-->
             <h3>Select available days:</h3>
@@ -36,7 +38,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
-        import { getDatabase, ref, update} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
+        import { getDatabase, ref, update, get} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
         import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
 
         const firebaseConfig = {
@@ -49,11 +51,11 @@
             appId: "1:212632097126:web:bb4518a57e31549c2178a7"
         };
 
-        //Initialize Firebase
+        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getDatabase();
         const auth = getAuth(app);
-      
+
         let bioInp = document.getElementById('bioInp');
         let ProfileForm = document.getElementById('ProfileForm');
 
@@ -64,20 +66,20 @@
 
             if (user) {
                 const userRef = ref(db, 'Users/' + user.uid);
-                const daysOfWeek = []; //Array to store selected days
+                const daysOfWeek = []; // Array to store selected days
 
-                //Get selected days
+                // Get selected days
                 document.querySelectorAll('input[name="days"]:checked').forEach((checkbox) => {
                     daysOfWeek.push(checkbox.value);
                 });
 
-                //Update user data including bio and selected days
+                // Update user data including bio and selected days
                 update(userRef, {
                     Bio: bioInp.value,
                     AvailableDays: daysOfWeek
                 })
                 .then(() => {
-                    window.location.href = 'profile.html'; //Redirect to the profile page
+                    window.location.href = 'profile.html'; // Redirect to the profile page
                 })
                 .catch((error) => {
                     alert(error.message);
@@ -87,16 +89,55 @@
             }
         };
 
-         //Function to handle canceling edits
-         const CancelEdit = () => {
-            window.location.href = 'profile.html'; //Redirect to the profile page without saving changes
+        // Function to handle canceling edits
+        const CancelEdit = () => {
+            window.location.href = 'profile.html'; // Redirect to the profile page without saving changes
         };
 
-        //Add event listener to the cancel button
+        // Fetch user profile data if available and pre-fill the form fields
+        const fetchProfileData = (user) => {
+            const userRef = ref(db, `Users/${user.uid}`);
+            get(userRef)
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    bioInp.value = userData.Bio || '';
+
+                    if (userData.AvailableDays && userData.AvailableDays.length > 0) {
+                        userData.AvailableDays.forEach((day) => {
+                            const checkbox = document.getElementById(day.toLowerCase());
+                            if (checkbox) {
+                                checkbox.checked = true;
+                            }
+                        });
+                    }
+                } else {
+                    console.log('No data available for the user.');
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching user profile data:', error);
+            });
+        };
+
+        // Fetch and pre-fill profile data when the user is authenticated
+        const onAuthStateChangedCallback = (user) => {
+            if (user) {
+                fetchProfileData(user);
+            } else {
+                console.log('User not logged in.');
+            }
+        };
+
+        // Listen for changes in authentication state
+        const unsubscribe = auth.onAuthStateChanged(onAuthStateChangedCallback);
+
+
+        // Add event listener to the cancel button
         const cancelBtn = document.getElementById('cancelBtn');
         cancelBtn.addEventListener('click', CancelEdit);
 
-        //Add event listener to the profile form
+        // Add event listener to the profile form
         ProfileForm.addEventListener('submit', SaveProfile);
     </script>
     </body>
