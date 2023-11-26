@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+</head>
+<body>
+    <form id="MainForm">
+    <div>
+        <h3>Log In</h3>
+        <input type="email" placeholder="Email" id="emailInp">
+        <input type="password" placeholder="Password" id="passInp">
+        <button type="submit" id="sub_btn">Log In</button>
+        <p>Don't have an account? <a href="register.html">Sign Up</a></p>
+    </div>
+</form>
+    <script type="module">
+    
+   // Import functions
+   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+   import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
+   import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+
+   
+   const firebaseConfig = {
+apiKey: "AIzaSyCE4N3-_icVHFbWLWI9rqO_E-uXwqB67rk",
+  authDomain: "pawmates-a1757.firebaseapp.com",
+  databaseURL: "https://pawmates-a1757-default-rtdb.firebaseio.com",
+  projectId: "pawmates-a1757",
+  storageBucket: "pawmates-a1757.appspot.com",
+  messagingSenderId: "212632097126",
+  appId: "1:212632097126:web:bb4518a57e31549c2178a7"
+  };
+ 
+   // Initialize Firebase
+   const app = initializeApp(firebaseConfig);
+   const db = getDatabase();
+   const auth = getAuth(app);
+   //gets the reference from the database
+   const dbref=ref(db);
+//references
+   let emailInp = document.getElementById('emailInp');
+   let nameInp = document.getElementById('nameInp');
+   let passInp = document.getElementById('passInp');
+   let userInp =document.getElementById('userInp');
+   let MainForm = document.getElementById('MainForm');
+//adds users to the firebase database
+   let SignInUser = evt =>{
+    evt.preventDefault();
+       signInWithEmailAndPassword(auth, emailInp.value, passInp.value)
+       .then((credentials)=>{
+        //recieves information from database to check if user exists
+        get(child(dbref, 'Users/'+ credentials.user.uid)).then((snapshot)=>{
+        if(snapshot.exists){
+            //saving the string in the session storage
+            sessionStorage.setItem("user-info", JSON.stringify({
+                Username: snapshot.val().Username
+            }))
+            sessionStorage.setItem("user-credentials", JSON.stringify(credentials.user));
+            window.location.href='home.html';
+            
+        }
+       })
+    })
+       //catches errors
+       .catch((error)=>{
+           alert(error.message);
+
+       })
+   }
+//whenever the form is submitted run the signin user function
+
+   MainForm.addEventListener('submit', SignInUser);
+
+</script>
+</body>
+</html>

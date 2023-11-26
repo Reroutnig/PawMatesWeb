@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <div>
+        <form id="MainForm">
+        <h3>Register</h3>
+        <input type="text" placeholder="Fullname" id="nameInp">
+        <input type="email" placeholder="Email" id="emailInp">
+        <input type="text" placeholder="Username" id="userInp">
+        <input type="password" placeholder="Password" id="passInp">
+        <button type="submit" id="sub_btn">Sign Up</button>
+       <p>Already registered?  <a href="login.html">Log In</a></p>
+    </form>
+</div>
+
+<script type="module">
+    // Import functions
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCE4N3-_icVHFbWLWI9rqO_E-uXwqB67rk",
+        authDomain: "pawmates-a1757.firebaseapp.com",
+        databaseURL: "https://pawmates-a1757-default-rtdb.firebaseio.com",
+        projectId: "pawmates-a1757",
+        storageBucket: "pawmates-a1757.appspot.com",
+        messagingSenderId: "212632097126",
+        appId: "1:212632097126:web:bb4518a57e31549c2178a7"
+    };
+      
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase();
+    const auth = getAuth(app);
+    //references
+    let emailInp = document.getElementById('emailInp');
+    let nameInp = document.getElementById('nameInp');
+    let passInp = document.getElementById('passInp');
+    let userInp =document.getElementById('userInp');
+    let MainForm = document.getElementById('MainForm');
+
+    // Define the RegisterUser function
+    const RegisterUser = (evt) => {
+        evt.preventDefault();
+
+        createUserWithEmailAndPassword(auth, emailInp.value, passInp.value)
+            .then((credentials) => {
+                set(ref(db, 'Users/' + credentials.user.uid), {
+                    Name: nameInp.value,
+                    Email: emailInp.value,
+                    Username: userInp.value
+                }).then(() => {
+                    window.location.href = 'configureProfile.html';
+                });
+            })
+            .catch((error) => {
+                alert(error.message);
+            });
+    };
+
+
+    // Add event listener to the form
+    MainForm.addEventListener('submit', RegisterUser);
+    
+    </script>
+</body>
+
+</html>

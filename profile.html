@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<body>
+    <h3 id="username"></h3>
+    <nav>
+        <button onclick="window.location.href='profile.html'">Profile</button>
+        <button onclick="window.location.href='home.html'">Home</button>
+        <button onclick="window.location.href='chat.html'">Chat</button> 
+    </nav>
+    <h6 id="bio"></h6>
+    <button onclick="window.location.href='configureProfile.html'">Edit Profile</button>
+    <button type="button" id="signoutbtn">Sign Out</button>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCE4N3-_icVHFbWLWI9rqO_E-uXwqB67rk",
+            authDomain: "pawmates-a1757.firebaseapp.com",
+            databaseURL: "https://pawmates-a1757-default-rtdb.firebaseio.com",
+            projectId: "pawmates-a1757",
+            storageBucket: "pawmates-a1757.appspot.com",
+            messagingSenderId: "212632097126",
+            appId: "1:212632097126:web:bb4518a57e31549c2178a7"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const auth = getAuth(app);
+
+        let UserId = document.getElementById('username');
+        let BioId = document.getElementById('bio');
+        let SignoutButton = document.getElementById('signoutbtn');
+
+        const Signout = () => {
+            auth.signOut().then(() => {
+                window.location.href = 'login.html';
+            }).catch((error) => {
+                console.error('Sign Out Error', error);
+            });
+        };
+
+        const getUserInfo = () => {
+            const user = auth.currentUser;
+            if (user) {
+                const userRef = ref(db, `Users/${user.uid}`);
+                get(userRef).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+                        UserId.innerText = `${userData.Username}'s profile ✮⋆˙`; //Display username
+                        BioId.innerText = `Bio: ${userData.Bio || 'No bio available'}`; //Display bio
+                    } else {
+                        console.log('No data available');
+                    }
+                }).catch((error) => {
+                    console.error('Error getting user info', error);
+                });
+            }
+        };
+
+        SignoutButton.addEventListener('click', Signout);
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                getUserInfo();
+            } else {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>
