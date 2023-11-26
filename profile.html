@@ -6,14 +6,24 @@
     <title>Profile</title>
 </head>
 <body>
+    <!--Display Username-->
     <h3 id="username"></h3>
+
+    <!--Navigation to click between Home, Profile, and Chat-->
     <nav>
         <button onclick="window.location.href='profile.html'">Profile</button>
         <button onclick="window.location.href='home.html'">Home</button>
         <button onclick="window.location.href='chat.html'">Chat</button> 
     </nav>
+
+    <!--Display bio-->
     <h6 id="bio"></h6>
+    <!--Display available days-->
+    <h6 id="availableDays"></h6>
+    
+    <!--Button to edit profile-->
     <button onclick="window.location.href='configureProfile.html'">Edit Profile</button>
+    <!--Button to sign out-->
     <button type="button" id="signoutbtn">Sign Out</button>
 
     <script type="module">
@@ -38,6 +48,7 @@
 
         let UserId = document.getElementById('username');
         let BioId = document.getElementById('bio');
+        const AvailableDaysId = document.getElementById('availableDays');
         let SignoutButton = document.getElementById('signoutbtn');
 
         const Signout = () => {
@@ -57,6 +68,13 @@
                         const userData = snapshot.val();
                         UserId.innerText = `${userData.Username}'s profile ✮⋆˙`; //Display username
                         BioId.innerText = `Bio: ${userData.Bio || 'No bio available'}`; //Display bio
+
+                        //Display available days if they exist
+                        if (userData.AvailableDays && userData.AvailableDays.length > 0) {
+                            AvailableDaysId.innerText = `Available Days: ${userData.AvailableDays.join(', ')}`;
+                        } else {
+                            AvailableDaysId.innerText = 'No available days selected';
+                        }
                     } else {
                         console.log('No data available');
                     }
@@ -66,6 +84,7 @@
             }
         };
 
+        //Event listener for sign out button
         SignoutButton.addEventListener('click', Signout);
 
         onAuthStateChanged(auth, (user) => {

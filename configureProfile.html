@@ -10,6 +10,25 @@
         <form id="ProfileForm">
             <h3>Editing Profile...</h3>
             <input type="text" placeholder="Bio" id="bioInp"> <!--Text area to enter bio-->
+
+            <!--Checkboxes to select availability-->
+            <h3>Select available days:</h3>
+            <label for="monday">Monday</label>
+            <input type="checkbox" id="monday" name="days" value="Monday">
+            <label for="tuesday">Tuesday</label>
+            <input type="checkbox" id="tuesday" name="days" value="Tuesday">
+            <label for="wednesday">Wednesday</label>
+            <input type="checkbox" id="wednesday" name="days" value="Wednesday">
+            <label for="thursday">Thursday</label>
+            <input type="checkbox" id="thursday" name="days" value="Thursday">
+            <label for="friday">Friday</label>
+            <input type="checkbox" id="friday" name="days" value="Friday">
+            <label for="saturday">Saturday</label>
+            <input type="checkbox" id="saturday" name="days" value="Saturday">
+            <label for="sunday">Sunday</label>
+            <input type="checkbox" id="sunday" name="days" value="Sunday">
+
+
             <button type="submit" id="saveProfBtn">Save</button> <!--Button to save changes-->
             <button type="button" id="cancelBtn">Cancel</button> <!--Button to cancel changes-->
         </form>
@@ -17,7 +36,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
-        import { getDatabase, ref, set} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
+        import { getDatabase, ref, update} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
         import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
 
         const firebaseConfig = {
@@ -38,23 +57,32 @@
         let bioInp = document.getElementById('bioInp');
         let ProfileForm = document.getElementById('ProfileForm');
 
-        const SaveBio = (evt) => {
+        const SaveProfile = (evt) => {
             evt.preventDefault();
 
-            //Get the currently logged-in user
             const user = auth.currentUser;
 
             if (user) {
-                const userRef = ref(db, 'Users/' + user.uid + '/Bio');
-                set(userRef, bioInp.value)
-                    .then(() => {
-                        window.location.href = 'profile.html'; //Redirect to the profile page
-                    })
-                    .catch((error) => {
-                        alert(error.message);
-                    });
+                const userRef = ref(db, 'Users/' + user.uid);
+                const daysOfWeek = []; //Array to store selected days
+
+                //Get selected days
+                document.querySelectorAll('input[name="days"]:checked').forEach((checkbox) => {
+                    daysOfWeek.push(checkbox.value);
+                });
+
+                //Update user data including bio and selected days
+                update(userRef, {
+                    Bio: bioInp.value,
+                    AvailableDays: daysOfWeek
+                })
+                .then(() => {
+                    window.location.href = 'profile.html'; //Redirect to the profile page
+                })
+                .catch((error) => {
+                    alert(error.message);
+                });
             } else {
-                //User not logged in, handle this scenario accordingly
                 console.log('User not logged in.');
             }
         };
@@ -69,7 +97,7 @@
         cancelBtn.addEventListener('click', CancelEdit);
 
         //Add event listener to the profile form
-        ProfileForm.addEventListener('submit', SaveBio);
+        ProfileForm.addEventListener('submit', SaveProfile);
     </script>
     </body>
 </html>
