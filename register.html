@@ -26,38 +26,62 @@
                                 alt="profile">
                         </div>
 
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="fullname" aria-describedby="emailHelp"
-                                placeholder="User Name" required>
-                        </div>
+<script type="module">
+        // Import functions
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
 
-                        <div class="mb-3">
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-                                placeholder="Email" required>
-                        </div>
+    const firebaseConfig = {
+   apiKey: "AIzaSyCE4N3-_icVHFbWLWI9rqO_E-uXwqB67rk",
+  authDomain: "pawmates-a1757.firebaseapp.com",
+  databaseURL: "https://pawmates-a1757-default-rtdb.firebaseio.com",
+  projectId: "pawmates-a1757",
+  storageBucket: "pawmates-a1757.appspot.com",
+  messagingSenderId: "212632097126",
+  appId: "1:212632097126:web:bb4518a57e31549c2178a7"
+  };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const auth = getAuth(app);
+        //references
+        let emailInp = document.getElementById('emailInp');
+        let nameInp = document.getElementById('nameInp');
+        let passInp = document.getElementById('passInp');
+        let userInp =document.getElementById('userInp');
+        let MainForm = document.getElementById('MainForm');
 
-                        <div class="mb-3">
-                            <input type="password" class="form-control" id="password" placeholder="password" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="file" class="form-control" id="image" required>
-                        </div>
-                        <p class="error" id="error" style="color: red;"></p>
-                        <div class="text-center"><button onclick="signup()"
-                                class="btn btn-outline-dark btn-color px-5 mb-5 w-100">Sign Up</button>
-                                <button style="width: 50%; display: none; height: 50px;background-color: black;" class="btn btn-outline-dark "></button></div>
-                                
-                        <div id="emailHelp" class="form-text text-center mb-5 text-dark">Already
-                            Registered? <a href="login.html" class="text-dark fw-bold"> Sign In</a>
-                        </div>
-                    </div>
-                </div>
+        // Define the RegisterUser function
+        const RegisterUser = (evt) => {
+        evt.preventDefault();
 
-            </div>
-        </div>
-    </div>
+    // Use createUserWithEmailAndPassword to register the user
+    createUserWithEmailAndPassword(auth, emailInp.value, passInp.value)
+        .then((credentials) => {
+            console.log(credentials);
+            // Save user information to the database
+            set(ref(db, 'Users/' + credentials.user.uid), {
+                Name: nameInp.value,
+                Email: emailInp.value,
+                Username: userInp.value
+            }).then(() => {
+                // Redirect to login.html after successful registration
+                window.location.href = 'login.html';
+            })
+        })
+        .catch((error) => {
+            // Handle createUserWithEmailAndPassword errors
+            alert(error.message);
+        });
+};
+
+    // Add event listener to the form
+    MainForm.addEventListener('submit', RegisterUser);
+    
+    </script>
 </body>
 <script type="module" src="/config/firebase.js"></script>
 <script type="module" src="/scripts/register.js"></script>
 </html>
-
