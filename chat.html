@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags and title -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <!-- Linking external stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <h1 style="color: white; padding-left: 15px;">Chat Room</h1>
+    </div>
+    <div>
+        <!-- Displaying the friendId in a div element -->
+        <div id="friendIdDisplay" style="color: white; padding-left: 15px;"></div>
+    </div>
+    <div class="messageBox" id="messageBox">
+        <div id="messages">
+
+        </div>
+    </div>
+    <div class="chat-input">
+        <!-- Message input field and send button -->
+        <input type="text" placeholder="Type a message" id="message" />
+        <button id="submit" onclick="sendMessage()">
+            <!-- Send icon SVG -->
+            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="white"
+                    d="M17,12L12,17V14H8V10H12V7L17,12M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L5,8.09V15.91L12,19.85L19,15.91V8.09L12,4.15Z" />
+            </svg>
+        </button>
+    </div>
+    <!-- Including the chat JavaScript file -->
+    <script type="module" src="/scripts/chat.js"></script>
+</body>
+
+</html>
