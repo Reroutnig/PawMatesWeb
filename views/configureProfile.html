@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editing Profile...</title>
+</head>
+<body>
+    <div>
+        <form id="ProfileForm">
+            <h3>Editing Profile...</h3>
+      
+            <!--Text area to enter bio-->
+            <div>
+              <h3>Bio:</h3>
+              <textarea placeholder="Write a quick bio to tell others about yourself!" id="bioInp"></textarea>
+            </div>
+            
+            <!--Checkboxes to select availability-->
+            <div>
+                <h3>Availability:</h3>
+                <input type="checkbox" id="monday" name="days" value="Monday">
+                <label for="monday">Monday</label><br>
+                <input type="checkbox" id="tuesday" name="days" value="Tuesday">
+                <label for="tuesday">Tuesday</label><br>
+                <input type="checkbox" id="wednesday" name="days" value="Wednesday">
+                <label for="wednesday">Wednesday</label><br>
+                <input type="checkbox" id="thursday" name="days" value="Thursday">
+                <label for="thursday">Thursday</label><br>
+                <input type="checkbox" id="friday" name="days" value="Friday">
+                <label for="friday">Friday</label><br>
+                <input type="checkbox" id="saturday" name="days" value="Saturday">
+                <label for="saturday">Saturday</label><br>
+                <input type="checkbox" id="sunday" name="days" value="Sunday">
+                <label for="sunday">Sunday</label><br>
+              </div>
+
+            <button type="submit" id="saveProfBtn">Save</button> <!--Button to save changes-->
+        </form>
+    </div>
+
+    <script type="module" src="/config/firebase.js"></script>
+    <script type="module" src="/scripts/configureProfile.js"></script>
+</body>
+</html>
