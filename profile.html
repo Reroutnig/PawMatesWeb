@@ -20,7 +20,16 @@
     <h6 id="bio"></h6>
     <!--Display available days-->
     <h6 id="availableDays"></h6>
-    
+    <!-- Display pet type and gender -->
+    <h6 id="genderPetType"></h6>
+    <!-- Display pet's age -->
+    <h6 id="petAge"></h6>
+    <!-- Display size -->
+    <h6 id="size"></h6>
+    <!-- Display vaccination status -->
+    <h6 id="vaccinationStatus"></h6>
+    <!-- Display neutered/spayed -->
+    <h6 id="neuteredSpayed"></h6>
     <!--Button to edit profile-->
     <button onclick="window.location.href='configureProfile.html'">Edit Profile</button>
     <!--Button to sign out-->
@@ -49,6 +58,11 @@
         let UserId = document.getElementById('username');
         let BioId = document.getElementById('bio');
         const AvailableDaysId = document.getElementById('availableDays');
+        let TypeGenderId = document.getElementById('genderPetType');
+        let PetAgeId = document.getElementById('petAge');
+        let SizeId = document.getElementById('size');
+        let VaccId = document.getElementById('vaccinationStatus');
+        let NeuteredSpayedId = document.getElementById('neuteredSpayed');
         let SignoutButton = document.getElementById('signoutbtn');
 
         const Signout = () => {
@@ -60,29 +74,40 @@
         };
 
         const getUserInfo = () => {
-            const user = auth.currentUser;
-            if (user) {
-                const userRef = ref(db, `Users/${user.uid}`);
-                get(userRef).then((snapshot) => {
-                    if (snapshot.exists()) {
-                        const userData = snapshot.val();
-                        UserId.innerText = `${userData.Username}'s profile ✮⋆˙`; //Display username
-                        BioId.innerText = `Bio: ${userData.Bio || 'No bio available'}`; //Display bio
+    const user = auth.currentUser;
+    if (user) {
+        const userRef = ref(db, `Users/${user.uid}`);
+        get(userRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                const userData = snapshot.val();
+                UserId.innerText = `${userData.Username}'s profile ✮⋆˙`; // Display username
+                BioId.innerText = `Bio: ${userData.Bio || 'No bio available'}`; // Display bio
 
-                        //Display available days if they exist
-                        if (userData.AvailableDays && userData.AvailableDays.length > 0) {
-                            AvailableDaysId.innerText = `Available Days: ${userData.AvailableDays.join(', ')}`;
-                        } else {
-                            AvailableDaysId.innerText = 'No available days selected';
-                        }
-                    } else {
-                        console.log('No data available');
-                    }
-                }).catch((error) => {
-                    console.error('Error getting user info', error);
-                });
+                // Display available days if they exist
+                if (userData.AvailableDays && userData.AvailableDays.length > 0) {
+                    AvailableDaysId.innerText = `Available Days: ${userData.AvailableDays.join(', ')}`;
+                } else {
+                    AvailableDaysId.innerText = 'No available days selected';
+                }
+
+                // Display pet type and gender
+                TypeGenderId.innerText = `Pet Type: ${userData.PetType || 'Not specified'} | Gender: ${userData.Gender}`;
+
+                PetAgeId.innerText = `Pet's Age: ${userData.PetAge} ${userData.AgeUnit || 'Not specified'}`;
+
+                // Display pet's size, vaccination status, and neutered/spayed status
+                SizeId.innerText = `Size: ${userData.Size || 'Not specified'}`;
+                VaccId.innerText = `Vaccinated: ${userData.Vaccinated || 'Not specified'}`;
+                NeuteredSpayedId.innerText = `Neutered/Spayed: ${userData.NeuteredSpayed || 'Not specified'}`;
+            } else {
+                console.log('No data available');
             }
-        };
+        }).catch((error) => {
+            console.error('Error getting user info', error);
+        });
+    }
+};
+
 
         //Event listener for sign out button
         SignoutButton.addEventListener('click', Signout);
