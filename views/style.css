@@ -6,7 +6,9 @@ body{
     color: #fff;
     
   }
-  
+  .pwd{
+color:#2671ff;
+  }
   .profile-image-pic{
     height: 150px;
     width: 150px;
