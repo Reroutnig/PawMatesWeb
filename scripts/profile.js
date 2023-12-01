@@ -74,7 +74,7 @@ async function displayUserAvailability() {
   }
 }
 
-//Function to display user's pet type on the profile page
+//Function to display pet type on the profile page
 async function displayUserPetType() {
   try {
     auth.onAuthStateChanged(async (currentUser) => {
@@ -82,13 +82,9 @@ async function displayUserPetType() {
         const users = await getUsersFromDb();
         const user = users.find(u => u.userId === currentUser.uid);
 
-        if (user && user.petType) {
-          const petTypeElement = document.createElement('p');
-          petTypeElement.textContent = `Pet Type: ${user.petType}`;
-          document.body.appendChild(petTypeElement);
-        } else {
-          console.log('User data or pet type not found');
-        }
+        const petTypeElement = document.createElement('p');
+        petTypeElement.textContent = user && user.petType ? `Pet Type: ${user.petType}` : 'Pet Type: Not available';
+        document.body.appendChild(petTypeElement);
       } else {
         console.log('No user logged in');
       }
@@ -98,7 +94,7 @@ async function displayUserPetType() {
   }
 }
 
-//Function to display user's gender on the profile page
+//Function to display gender on the profile page
 async function displayUserGender() {
   try {
     auth.onAuthStateChanged(async (currentUser) => {
@@ -106,13 +102,49 @@ async function displayUserGender() {
         const users = await getUsersFromDb();
         const user = users.find(u => u.userId === currentUser.uid);
 
-        if (user && user.gender) {
-          const genderElement = document.createElement('p');
-          genderElement.textContent = `Gender: ${user.gender}`;
-          document.body.appendChild(genderElement);
-        } else {
-          console.log('User data or gender not found');
-        }
+        const genderElement = document.createElement('p');
+        genderElement.textContent = user && user.gender ? `Gender: ${user.gender}` : 'Gender: Not available';
+        document.body.appendChild(genderElement);
+      } else {
+        console.log('No user logged in');
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+  }
+}
+
+//Function to display pet's age on the profile page
+async function displayUserAge() {
+  try {
+    auth.onAuthStateChanged(async (currentUser) => {
+      if (currentUser) {
+        const users = await getUsersFromDb();
+        const user = users.find(u => u.userId === currentUser.uid);
+
+        const ageElement = document.createElement('p');
+        ageElement.textContent = user && user.age ? `Age: ${user.age}` : 'Age: Not available';
+        document.body.appendChild(ageElement);
+      } else {
+        console.log('No user logged in');
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+  }
+}
+
+//Function to display pet's size on the profile page
+async function displayUserSize() {
+  try {
+    auth.onAuthStateChanged(async (currentUser) => {
+      if (currentUser) {
+        const users = await getUsersFromDb();
+        const user = users.find(u => u.userId === currentUser.uid);
+
+        const sizeElement = document.createElement('p');
+        sizeElement.textContent = user && user.size ? `Size: ${user.size}` : 'Size: Not available';
+        document.body.appendChild(sizeElement);
       } else {
         console.log('No user logged in');
       }
@@ -134,3 +166,5 @@ displayUserBio();
 displayUserAvailability();
 displayUserPetType();
 displayUserGender();
+displayUserAge();
+displayUserSize();

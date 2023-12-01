@@ -10,6 +10,8 @@
         <form id="ProfileForm">
             <h3>Editing Profile...</h3>
       
+            <div id="errorContainer" style="display: none; color: red;"></div>
+            
             <!--Text area to enter bio-->
             <div>
               <h3>Bio:</h3>
@@ -55,6 +57,27 @@
                 <input type="radio" id="male" name="gender" value="Male">
                 <label for="male">Male</label><br>
               </div>
+
+              <!-- Pet's Age -->
+              <div>
+                <h5>Age:</h5>
+                <input type="text" id="petAge" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="Enter pet's age (in numbers)">
+                <input type="radio" id="months" name="ageUnit" value="months">
+                <label for="months">Months</label>
+                <input type="radio" id="years" name="ageUnit" value="years">
+                <label for="years">Years</label>
+            </div>
+
+            <!-- Pet's Size -->
+            <div>
+                <h5>Size:</h5>
+                <input type="radio" id="small" name="size" value="Small">
+                <label for="small">Small</label><br>
+                <input type="radio" id="medium" name="size" value="Medium">
+                <label for="medium">Medium</label><br>
+                <input type="radio" id="large" name="size" value="Large">
+                <label for="large">Large</label><br>
+            </div>
             <button type="submit" id="saveProfBtn">Save</button> <!--Button to save changes-->
         </form>
     </div>

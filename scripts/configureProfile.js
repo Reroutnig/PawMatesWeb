@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     profileForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-
+    
         const userId = auth.currentUser.uid;
-
+    
         //Get the bio input
         const bio = document.getElementById('bioInp').value;
-
+    
         //Get the values of checked checkboxes for availability
         const availability = [];
         const checkboxes = document.getElementsByName('days');
@@ -19,23 +19,45 @@ document.addEventListener('DOMContentLoaded', async () => {
                 availability.push(checkbox.value);
             }
         });
-
+    
         //Get the selected pet type
         const petType = document.querySelector('input[name="pettype"]:checked');
         const selectedPetType = petType ? petType.value : null;
-
+    
         //Get the selected gender
         const gender = document.querySelector('input[name="gender"]:checked');
         const selectedGender = gender ? gender.value : null;
-
-        //Prepare profile details object including bio, availability, pet type, and gender
+    
+        //Get the pet's age
+        const petAge = document.getElementById('petAge').value;
+        const ageUnit = document.querySelector('input[name="ageUnit"]:checked');
+        const selectedAgeUnit = ageUnit ? ageUnit.value : null;
+        const petAgeData = `${petAge} ${selectedAgeUnit}`;
+    
+        //Get the selected pet size
+        const size = document.querySelector('input[name="size"]:checked');
+        const selectedSize = size ? size.value : null;
+    
+        //Validate pet age and age unit
+        if ((petAge && !selectedAgeUnit) || (!petAge && selectedAgeUnit)) {
+            const errorContainer = document.getElementById('errorContainer');
+            errorContainer.innerText = 'Please select both pet age and age unit.';
+            errorContainer.style.display = 'block';
+            return; //Prevent form submission if validation fails
+        } else {
+            document.getElementById('errorContainer').style.display = 'none';
+        }
+    
+        //Prepare profile details object including bio, availability, pet type, gender, age, and size
         const profileDetails = {
             bio: bio,
             availability: availability,
             petType: selectedPetType,
             gender: selectedGender,
+            age: petAgeData,
+            size: selectedSize,
         };
-
+    
         //Updating current user's profile details in the profile page
         try {
             await updateUserProfile(userId, profileDetails);
