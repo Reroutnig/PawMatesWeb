@@ -74,6 +74,54 @@ async function displayUserAvailability() {
   }
 }
 
+//Function to display user's pet type on the profile page
+async function displayUserPetType() {
+  try {
+    auth.onAuthStateChanged(async (currentUser) => {
+      if (currentUser) {
+        const users = await getUsersFromDb();
+        const user = users.find(u => u.userId === currentUser.uid);
+
+        if (user && user.petType) {
+          const petTypeElement = document.createElement('p');
+          petTypeElement.textContent = `Pet Type: ${user.petType}`;
+          document.body.appendChild(petTypeElement);
+        } else {
+          console.log('User data or pet type not found');
+        }
+      } else {
+        console.log('No user logged in');
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+  }
+}
+
+//Function to display user's gender on the profile page
+async function displayUserGender() {
+  try {
+    auth.onAuthStateChanged(async (currentUser) => {
+      if (currentUser) {
+        const users = await getUsersFromDb();
+        const user = users.find(u => u.userId === currentUser.uid);
+
+        if (user && user.gender) {
+          const genderElement = document.createElement('p');
+          genderElement.textContent = `Gender: ${user.gender}`;
+          document.body.appendChild(genderElement);
+        } else {
+          console.log('User data or gender not found');
+        }
+      } else {
+        console.log('No user logged in');
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+  }
+}
+
 //Function to handle user logout
 window.logout = function () {
   userLogout();
@@ -84,3 +132,5 @@ window.logout = function () {
 displayUserFullName();
 displayUserBio();
 displayUserAvailability();
+displayUserPetType();
+displayUserGender();
