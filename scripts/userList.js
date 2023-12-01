@@ -31,4 +31,3 @@ window.logout = function () {
     userLogout();
     window.location.replace("register.html"); // Redirect to the registration page after logout
 }
-

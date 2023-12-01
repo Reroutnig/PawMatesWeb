@@ -43,6 +43,3 @@ window.signup = async function (){
         console.log(e.code)
     }
 }
-
-
-

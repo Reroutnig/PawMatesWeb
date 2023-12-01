@@ -32,5 +32,3 @@ window.login = async function(){
         }
     }
 }
-
-

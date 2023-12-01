@@ -147,6 +147,9 @@ export {
     userLogout,
     sendMessageToDb,
     getMessagesFromDb,
+    sendPasswordResetEmail,
+    getAuth,
+    app,
     updateUserProfile,
     auth, db
 }
