@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PawMates</title>
+    </head>
+    <body>
+        <h1>Create Post</h1>
+        <div>
+            <div class="form">
+                <label for="pet-image">Add image: </label>
+                <input type="file" id="pet-image">
+                <br>
+                <label for="pet-name">Pet name: </label>
+                <input type="text" id="pet-name">
+                <br>
+                <label for="pet-type">Pet type: </label>
+                <select name="pet-type" id="pet-type">
+                    <option value="dog">Dog</option>
+                    <option value="cat">Cat</option>
+                    <option value="fish">Fish</option>
+                </select>
+                <br>
+                <label for="age">Pet age: </label>
+                <input type="text" id="age">
+                <br>
+                <label for="size">Pet size: </label>
+                <select name="pet-size" id="pet-size">
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                </select>
+                <br>
+
+                <button type="button" id="post">Post</button>
+            </div>
+
+        </div>
+
+        <script type="module" src="/scripts/createPosts.js"></script>
+    </body>
+</html>

@@ -143,6 +143,9 @@ export {
     getMessagesFromDb,
     sendPasswordResetEmail,
     getAuth,
-    app,
     auth
+
+    //exported consts 
+    storage,
+    app
 }
