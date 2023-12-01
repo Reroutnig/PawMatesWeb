@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const size = document.querySelector('input[name="size"]:checked');
         const selectedSize = size ? size.value : null;
     
-        //Validate pet age and age unit
+        //Validate pet age and age unit, requiring both fields if one is selected
         if ((petAge && !selectedAgeUnit) || (!petAge && selectedAgeUnit)) {
             const errorContainer = document.getElementById('errorContainer');
             errorContainer.innerText = 'Please select both pet age and age unit.';
@@ -48,7 +48,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('errorContainer').style.display = 'none';
         }
     
-        //Prepare profile details object including bio, availability, pet type, gender, age, and size
+
+        //Get the selected vaccination status
+        const vaccStatus = document.querySelector('input[name="vacc"]:checked');
+        const selectedVaccStatus = vaccStatus ? vaccStatus.value : null;
+
+        //Get the selected neutered/spayed status
+        const neuSpaStatus = document.querySelector('input[name="neuSpa"]:checked');
+        const selectedNeuSpaStatus = neuSpaStatus ? neuSpaStatus.value : null;
+
+        //Prepare profile details object
         const profileDetails = {
             bio: bio,
             availability: availability,
@@ -56,6 +65,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             gender: selectedGender,
             age: petAgeData,
             size: selectedSize,
+            vaccinated: selectedVaccStatus,
+            neuteredSpayed: selectedNeuSpaStatus,
         };
     
         //Updating current user's profile details in the profile page

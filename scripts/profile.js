@@ -154,6 +154,46 @@ async function displayUserSize() {
   }
 }
 
+//Function to display pet's vaccination status on the profile page
+async function displayUserVaccinationStatus() {
+  try {
+    auth.onAuthStateChanged(async (currentUser) => {
+      if (currentUser) {
+        const users = await getUsersFromDb();
+        const user = users.find(u => u.userId === currentUser.uid);
+
+        const vaccStatusElement = document.createElement('p');
+        vaccStatusElement.textContent = user && user.vaccinated ? `Vaccinated: ${user.vaccinated}` : 'Vaccinated: Not available';
+        document.body.appendChild(vaccStatusElement);
+      } else {
+        console.log('No user logged in');
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+  }
+}
+
+//Function to display pet's neutered/spayed status on the profile page
+async function displayUserNeuteredSpayedStatus() {
+  try {
+    auth.onAuthStateChanged(async (currentUser) => {
+      if (currentUser) {
+        const users = await getUsersFromDb();
+        const user = users.find(u => u.userId === currentUser.uid);
+
+        const neuSpaStatusElement = document.createElement('p');
+        neuSpaStatusElement.textContent = user && user.neuteredSpayed ? `Neutered/Spayed: ${user.neuteredSpayed}` : 'Neutered/Spayed: Not available';
+        document.body.appendChild(neuSpaStatusElement);
+      } else {
+        console.log('No user logged in');
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+  }
+}
+
 //Function to handle user logout
 window.logout = function () {
   userLogout();
@@ -168,3 +208,5 @@ displayUserPetType();
 displayUserGender();
 displayUserAge();
 displayUserSize();
+displayUserVaccinationStatus();
+displayUserNeuteredSpayedStatus();
