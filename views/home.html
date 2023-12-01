@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <!-- Meta tags, title, and CSS stylesheet -->
+    <script type="module" src="/scripts/home.js"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,6 +30,46 @@
             </div>
         </div>
     </nav>
+<!-- body of home page -->
+    <div>
+        <div class="sort-options">
+            <select name="location" id="location">
+                <option value="location1">Location1</option>
+                <option value="location2">Location2</option>
+                <option value="location3">Location3</option>
+            </select>
+            <select name="pet-type" id="pet-type">
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="fish">Fish</option>
+            </select>
+
+            <select name="age" id="age">
+                <option value="0-12mo">0-12 Months</option>
+                <option value="1-5yrs">1-5 Years</option>
+                <option value="5-10yrs">5-10 Years</option>
+                <option value="10+yrs">10+ Years</option>
+            </select>
+            <select name="size" id="pet-size">
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+            </select>
+            <select name="sort-by" id="sort-by">
+                <option value="location">Location</option>
+                <option value="pet-type">Pet Type</option>
+                <option value="age">Age</option>
+                <option value="size">Size</option>
+            </select>
+        </div>
+        <div class="posts" id="posts">
+
+        </div>
+        <br><br>
+        <div class="bottom-buttons">
+            <button type="button" id="add-post">Add Post</button>
+        </div>
+    </div>
 
     <!-- JavaScript for hamburger menu and active link -->
     <script>

@@ -139,5 +139,9 @@ export {
     userLogout,
     sendMessageToDb,
     getMessagesFromDb,
-    auth
+    auth,
+
+    //exported consts 
+    storage,
+    app
 }
