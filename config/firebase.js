@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js'
+import { getAuth, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js'
 import { getFirestore, query, where, setDoc, doc, addDoc, collection, getDoc, getDocs, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js'
 import { getStorage, ref, ref as sRef, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js'
 // TODO: Add SDKs for Firebase products that you want to use
@@ -127,6 +127,8 @@ async function getMessagesFromDb(roomId, callback) {
 function userLogout() {
     auth.signOut();
 }
+
+
 // Exported functions to use in other files
 export {
     signInFirebase,
@@ -139,7 +141,9 @@ export {
     userLogout,
     sendMessageToDb,
     getMessagesFromDb,
-    auth,
+    sendPasswordResetEmail,
+    getAuth,
+    auth
 
     //exported consts 
     storage,
