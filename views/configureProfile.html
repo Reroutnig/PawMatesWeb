@@ -14,6 +14,12 @@
             <div id="errorContainer" style="display: none; color: red;"></div>
 
             <div>
+                <!--Images-->
+                <div>
+                    <h3>Photos:</h3>
+                    <input type="file" id="imageUpload" accept="image/*" multiple>
+                </div>
+
                 <!--Text area to enter bio-->
                 <div>
                     <h3>Bio:</h3>
@@ -40,28 +46,27 @@
                 </div>
     
                 <!--Section to get pet information-->
+                <h3>Info:</h3>
+                <!-- Pet's Type -->
                 <div>
-                    <h3>Info:</h3>
-                    <div>
-                        <!-- Pet's Type -->
-                        <h5>Pet Type:</h5>
-                        <input type="radio" id="cat" name="pettype" value="Cat">
-                        <label for="cat">Cat</label><br>
-                        <input type="radio" id="dog" name="pettype" value="Dog">
-                        <label for="dog">Dog</label><br>
-                    </div>
+                    <h5>Pet Type:</h5>
+                    <input type="radio" id="cat" name="pettype" value="Cat">
+                    <label for="cat">Cat</label><br>
+                    <input type="radio" id="dog" name="pettype" value="Dog">
+                    <label for="dog">Dog</label><br>
+                </div>
     
-                    <!-- Pet's Gender -->
-                    <div>
+                <!-- Pet's Gender -->
+                <div>
                     <h5>Gender:</h5>
                     <input type="radio" id="female" name="gender" value="Female">
                     <label for="female">Female</label><br>
                     <input type="radio" id="male" name="gender" value="Male">
                     <label for="male">Male</label><br>
-                    </div>
+                </div>
     
-                    <!-- Pet's Age -->
-                    <div>
+                <!-- Pet's Age -->
+                <div>
                     <h5>Age:</h5>
                     <input type="text" id="petAge" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="Enter pet's age (in numbers)">
                     <input type="radio" id="months" name="ageUnit" value="months">

@@ -1,4 +1,4 @@
-import { auth, db, updateUserProfile } from '/config/firebase.js';
+import { auth, db, updateUserProfile, uploadImage } from '/config/firebase.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const profileForm = document.getElementById('ProfileForm');
@@ -8,6 +8,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     
         const userId = auth.currentUser.uid;
     
+        //Getting images
+        const imageUpload = document.getElementById('imageUpload');
+        const images = imageUpload.files;
+
+        const imageURLs = [];
+        if (images.length > 0) {
+            for (let i = 0; i < images.length; i++) {
+                const imageUrl = await uploadImage(images[i]);
+                imageURLs.push(imageUrl);
+            }
+        }
+
         //Get the bio input
         const bio = document.getElementById('bioInp').value;
     
@@ -67,6 +79,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             size: selectedSize,
             vaccinated: selectedVaccStatus,
             neuteredSpayed: selectedNeuSpaStatus,
+            images: imageURLs,
         };
     
         //Updating current user's profile details in the profile page

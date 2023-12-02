@@ -24,6 +24,37 @@ async function displayUserFullName() {
   }
 }
 
+//Function to display user's uploaded photos on the profile page
+async function displayUserPhotos() {
+  try {
+      auth.onAuthStateChanged(async (currentUser) => {
+          if (currentUser) {
+              const users = await getUsersFromDb();
+              const user = users.find(u => u.userId === currentUser.uid);
+
+              if (user && user.images && user.images.length > 0) {
+                  const imagesContainer = document.createElement('div');
+                  imagesContainer.classList.add('images-container');
+
+                  user.images.forEach(imageUrl => {
+                      const imgElement = document.createElement('img');
+                      imgElement.src = imageUrl;
+                      imagesContainer.appendChild(imgElement);
+                  });
+
+                  document.body.appendChild(imagesContainer);
+              } else {
+                  console.log('User has no uploaded images');
+              }
+          } else {
+              console.log('No user logged in');
+          }
+      });
+  } catch (error) {
+      console.error('Error fetching user images:', error);
+  }
+}
+
 //Function to display user bio on the profile page
 async function displayUserBio() {
   try {
@@ -200,8 +231,9 @@ window.logout = function () {
   window.location.replace("login.html"); //Redirect to the login page after logout
 }
 
-//Call the functions to display the user fullname, bio, and availability when the page loads
+//Call the functions to display the user fullname, photos, bio, availability, etc. when the page loads
 displayUserFullName();
+displayUserPhotos();
 displayUserBio();
 displayUserAvailability();
 displayUserPetType();

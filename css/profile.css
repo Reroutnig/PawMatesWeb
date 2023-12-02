@@ -1,0 +1,13 @@
+.images-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /*Adjust gap between images*/
+}
+
+/*Resize uploaded images*/
+.images-container img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px; /* Optionally add border-radius for rounded corners */
+}
