@@ -1,0 +1,197 @@
+/* Add a class for the three-dot loading animation */
+@keyframes loading {
+
+    0%,
+    80%,
+    100% {
+      transform: scale(0);
+    }
+  
+    40% {
+      transform: scale(1);
+    }
+  }
+  
+  body {
+    background-image: url("background.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+  }
+  
+  /*Title*/
+  h2 {
+    font-family: 'Racing Sans One';
+    font-size: 130px;
+  }
+  
+  .light-green {
+    color: #A3C14A;
+    text-shadow: 5px 2px 0px rgba(0, 0, 0, 0.75);
+  }
+  
+  .dark-green {
+    color: #68902B;
+    text-shadow: 5px 2px 0px rgba(0, 0, 0, 0.75);
+  }
+  
+  /* Button CSS */
+  .container {
+    width: 170px;
+    height: 60px;
+    text-align: center;
+  }
+  
+  /* Updated button styles with animation class */
+  button {
+    outline: none;
+    height: 40px;
+    text-align: center;
+    width: 130px;
+    border-radius: 40px;
+    background: #ffd4d4;
+    border: 2px solid #b84c65;
+    color: #b84c65;
+    letter-spacing: 1px;
+    text-shadow: 0;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  
+  button:hover {
+    color: #b84c65;
+    background: #ffffe8;
+  }
+  
+  button:active {
+    letter-spacing: 2px;
+  }
+  
+  /* Class to display three-dot loading animation */
+  .three-dots {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+  }
+  
+  .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 2px;
+    border-radius: 50%;
+    background-color: #b84c65;
+    animation: loading 1.4s infinite ease-in-out both;
+  }
+  
+  .dot:nth-child(1) {
+    animation-delay: 0s;
+  }
+  
+  .dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  .sign-button {
+    width: 170px;
+    height: 60px;
+    text-align: center;
+    color: #b84c65;
+  }
+  
+  /* unvisited link */
+  a:link {
+    text-decoration: none;
+  }
+  
+  /* visited link */
+  a:visited {
+    text-decoration: none;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    text-decoration: none;
+  }
+  
+  /* selected link */
+  a:active {
+    text-decoration: none;
+  }
+  
+  /* Add styles for the forgot password button */
+  .forgot-password-button {
+    outline: none;
+    height: 60px;
+    text-align: center;
+    width: 200px;
+    border-radius: 40px;
+    background: #BACD82;
+    border: 2px solid #68902B;
+    color: #68902B;
+    letter-spacing: 1px;
+    text-shadow: 0;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  
+  .forgot-password-button:hover {
+    color: #68902B;
+    background: #ffffe8;
+  }
+  
+  /* Adjust the color of the link inside the label */
+  .forgot-password a {
+    color: #68902B;
+  }
+  
+  button,
+  .sign-button,
+  .forgot-password-button {
+    font-family: 'Bebas Neue';
+    font-size: 20px;
+  }
+  
+  .find-friend {
+    color: #b84c65;
+    font-family: 'Bebas Neue';
+    font-size: 30px;
+  }
+  
+  /*Email input*/
+  input[type=email] {
+    font-size: 15px;
+    font-family: 'Bebas Neue';
+    background-color: #FFFFE8;
+    width: 200px;
+    height: 35px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 0;
+    
+  }
+  
+  input[type=password] {
+    font-size: 15px;
+    font-family: 'Bebas Neue';
+    background-color: #FFFFE8;
+    width: 200px;
+    height: 35px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 0;
+    
+  }
+  .center{
+    text-align: center;
+  }

@@ -1,4 +1,4 @@
-//import functions from firebase.js
+//import functions from firebase.js 
 import { sendMessageToDb,getMessagesFromDb,auth} from "/config/firebase.js";
 
 

@@ -1,4 +1,4 @@
-// Import the functions you need from the SDKs you need
+// Import the functions you need from the SDKs you need 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js'
 import { getFirestore, query, where, setDoc, doc, addDoc, collection, getDoc, getDocs, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js'
@@ -44,8 +44,8 @@ async function uploadImage(image) {
 // Function to add user details to Firestore database
 function addUserToDb(userInfo) {
     const userId = auth.currentUser.uid;
-    const { email, fullname,imageUrl } = userInfo
-    return setDoc(doc(db, "users", userId), { email, fullname,imageUrl, userId })
+    const { email, fullname, imageUrl } = userInfo
+    return setDoc(doc(db, "users", userId), { email, fullname, imageUrl, userId })
 
 }
 // Function to check if a user is logged in or not
@@ -124,6 +124,51 @@ async function getMessagesFromDb(roomId, callback) {
         callback(messages)
     })
 }
+//Function to update user profile details
+function updateUserProfile(userId, profileDetails) {
+    const userRef = doc(db, "users", userId);
+    return updateDoc(userRef, profileDetails);
+}
+
+// Function to retrieve a specific user's data from Firestore database
+async function getUserProfile(userId) {
+    const userDoc = await getDoc(doc(db, "users", userId));
+    if (userDoc.exists()) {
+        return { id: userDoc.id, ...userDoc.data() };
+    } else {
+        return null;
+    }
+}
+
+// Function to populate the form fields with user details
+async function repopulateForm(userId) {
+    const user = await getUserProfile(userId);
+    if (user) {
+        // Populate form fields with user details
+        document.getElementById('bioInp').value = user.bio || '';
+
+        // Checkbox handling
+        const availabilityCheckboxes = document.getElementsByName('days');
+        user.availability.forEach((day) => {
+            const checkbox = availabilityCheckboxes.find((chk) => chk.value === day);
+            if (checkbox) {
+                checkbox.checked = true;
+            }
+        });
+
+        // Radio button handling (example for pet type)
+        const petTypeRadios = document.getElementsByName('pettype');
+        const selectedPetType = user.petType;
+        petTypeRadios.forEach((radio) => {
+            if (radio.value === selectedPetType) {
+                radio.checked = true;
+            }
+        });
+    } else {
+        console.log('User not found.');
+    }
+}
+
 function userLogout() {
     auth.signOut();
 }
@@ -144,7 +189,9 @@ export {
     sendPasswordResetEmail,
     getAuth,
     auth,
-
+    updateUserProfile,
+    repopulateForm,
+    db,
     //exported consts 
     storage,
     app
