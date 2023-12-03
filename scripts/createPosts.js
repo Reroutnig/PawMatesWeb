@@ -12,13 +12,28 @@ const auth = getAuth(app);
 //add fields to db
 
 document.querySelector("#post").addEventListener('click', addPost);
+
 async function addPost() {
-    //add image
+    //validate
     const fileSelector = document.querySelector("#pet-image");
     if (fileSelector.files.length == 0) {
         return;
     }
 
+    const age = document.querySelector("#age").value;
+    if (isNaN(age)){
+        alert("Please Enter Only a Number");
+        return;
+    }
+
+    const monthAge = document.querySelector("#month-age");
+    const yearAge = document.querySelector("#year-age");
+    if (monthAge.checked == false && yearAge.checked == false){
+        alert("Please select age type");
+        return;
+    }
+
+    //upload image
     const file = fileSelector.files[0];
 
     const imageRef = ref(storage, `postImages/${file.name + Math.floor(Math.random() * 6)}`);
@@ -29,23 +44,22 @@ async function addPost() {
     //add data 
     //getting data from html
     const name = document.querySelector("#pet-name").value;
-    const age = document.querySelector("#age").value;
     const size = document.querySelector("#pet-size").value;
     const type = document.querySelector("#pet-type").value;
-    const user = auth.currentUser.uid;
+    const desc = document.querySelector("#desc").value;
+    let user = auth.currentUser.uid;
+    user = await getUserName(user);
     const image = await uploadImage(file);
 
+    //getting age type
+    let ageType;
+    if (monthAge.checked == true){
+        ageType = monthAge.value;
+    }
+    else{
+        ageType = yearAge.value;
+    }
 
-    //used to get parts of docs
-    // const colRef = collection(db, "users")
-    // getDocs(colRef).then((snapshot) => {
-    //     let users = [];
-    //     for(let i = 0; i < snapshot.docs.length; i++){
-    //         if(doc.id == auth.currentUser.uid){
-    //             user = doc[i].
-    //         }
-    //     }
-    // })
 
     await addDoc(collection(db, "posts"), {
         age: age,
@@ -53,6 +67,30 @@ async function addPost() {
         size: size,
         type: type,
         user: user,
-        image: image
+        image: image,
+        ageType: ageType,
+        description: desc
     });
+}
+
+async function getUserName(user){
+    let users = [];
+//get posts
+const colRef = collection(db, "users")
+await getDocs(colRef).then((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+        users.push({ ...doc.data(), id: doc.id });
+    })
+    console.log(users);
+});
+
+for (let i = 0; i < users.length; i++){
+    if (user == users[i].userId){
+        return users[i].fullname;
+    }
+    else{
+        console.log("issue");
+    }
+}
+
 }

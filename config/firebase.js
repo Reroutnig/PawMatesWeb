@@ -143,7 +143,7 @@ export {
     getMessagesFromDb,
     sendPasswordResetEmail,
     getAuth,
-    auth
+    auth,
 
     //exported consts 
     storage,

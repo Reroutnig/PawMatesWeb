@@ -1,8 +1,8 @@
 
 import { storage, app, uploadImage } from "../config/firebase.js";
 import { ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js"
-import { getFirestore, doc, setDoc, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js"
-import {getAuth} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js"
+import { getFirestore, doc, setDoc, collection, getDocs, addDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js"
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js"
 
 const db = getFirestore(app);
 
@@ -15,34 +15,99 @@ function switchAddPost() {
 }
 
 
+
 let posts = [];
 //get posts
-const colRef = collection(db, "posts")
+const colRef = collection(db, "posts");
+//query test
+// const q = query(colRef, orderBy("type"));
+// console.log(q);
+
 await getDocs(colRef).then((snapshot) => {
     snapshot.docs.forEach((doc) => {
-        posts.push({...doc.data(), id: doc.id});
+        posts.push({ ...doc.data(), id: doc.id });
     })
     console.log(posts);
 });
 
-//display posts
 const main = document.querySelector("#posts");
-posts.forEach((post) =>{
 
-    const age = document.createElement("p");
-    const name = document.createElement("p");
-    const size = document.createElement("p");
-    const type = document.createElement("p");
-    const space = document.createElement("br");
+//get Sorts
+const petTypeSelector = document.querySelector("#pet-type");
+let petType = petTypeSelector.value;
+let petAgeSelector = document.querySelector("#age");
+let petAge = petAgeSelector.value;
+let petSizeSelector = document.querySelector("#pet-size");
+let petSize = petSizeSelector.value;
 
-    age.innerHTML = post.age;
-    name.innerHTML = post.name;
-    size.innerHTML = post.size;
-    type.innerHTML = post.type;
+petTypeSelector.addEventListener("change", getPosts);
+petAgeSelector.addEventListener("change", getPosts);
+petSizeSelector.addEventListener("change", getPosts);
 
-    main.appendChild(age);
-    main.appendChild(name);
-    main.appendChild(size);
-    main.appendChild(type);
-    main.appendChild(space);
-})
+
+//display posts
+getPosts();
+
+
+
+
+
+function getPosts(){
+    petType = petTypeSelector.value;
+    petAge = petAgeSelector.value;
+    petSize = petSizeSelector.value;
+
+    main.innerHTML = "";
+    for (let i = 0; i < posts.length; i++){
+
+        if (petType != "All" ||  petAge != "All" || petSize != "All"){
+            if ((posts[i].type == petType || petType == "All") && (inRange(posts[i].age, petAge, posts[i].ageType)|| petAge == "All") && (posts[i].size == petSize|| petSize == "All")){
+
+                displayPosts(posts[i].image, posts[i].name, posts[i].type, posts[i].age, posts[i].size, posts[i].user, posts[i].ageType, posts[i].description);
+            }
+        }
+        else{
+            displayPosts(posts[i].image, posts[i].name, posts[i].type, posts[i].age, posts[i].size, posts[i].user, posts[i].ageType, posts[i].description);
+        }
+    
+    
+    }
+}
+
+function displayPosts(postImage, postName, postType, postAge, postSize, postUser, ageType, desc){
+    const postDiv = document.createElement("div");
+    postDiv.className = "post-div";
+
+    postDiv.innerHTML = `<img src='${postImage}' alt="pfp" 
+    style="object-fit: scale-down;
+    width: 150px;
+    height: 150px;">
+    <h3>${postUser}</h3>
+    <h2>${postName}</h2>
+    <p>${postType}</p>
+    <p>${postAge} ${ageType}</p>
+    <p>${postSize}</p>
+    <p>${desc}</p>
+    <br>`
+
+    main.appendChild(postDiv);
+}
+
+
+function inRange(postAge, selectAge, ageType){
+    if (ageType == "Months" && selectAge == "0-12mo"){
+        return true;
+    }
+    else if (ageType == "Years" && selectAge == "1-5yrs" && postAge <= 5){
+        return true;
+    }
+    else if (ageType == "Years" && selectAge == "5-10yrs" && postAge <= 10 && postAge >= 5){
+        return true;
+    }
+    else if (ageType == "Years" && selectAge == "10+yrs" && postAge >= 10){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
