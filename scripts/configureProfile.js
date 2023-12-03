@@ -91,4 +91,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error('Error updating profile details:', error);
         }
     });
+    
+    const cancelBtn = document.getElementById('cancelBtn');
+
+    cancelBtn.addEventListener('click', () => {
+        window.location.href = '/views/profile.html';
+    });
 });

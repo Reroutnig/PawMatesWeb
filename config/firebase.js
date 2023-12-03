@@ -32,6 +32,7 @@ async function signUpFirebase(userInfo) {
 
     return createUserWithEmailAndPassword(auth, email, password);
 }
+
 // Function to upload an image to Firebase storage
 async function uploadImage(image) {
     const storageRef = ref(storage, `images/${image.name}`);
@@ -39,7 +40,6 @@ async function uploadImage(image) {
     const url = await getDownloadURL(snapshot.ref)
     return url
 }
-
 
 // Function to add user details to Firestore database
 function addUserToDb(userInfo) {
@@ -112,8 +112,8 @@ async function sendMessageToDb(text, roomId) {
     const lastMessageRef = addDoc(collection(db, "chatrooms", `${roomId}`, "lastMessage"), { text: text, userId: auth.currentUser.uid })
     await setDoc(lastMessageRef, { text: text, userId: auth.currentUser.uid });
 }
-// Function to retrieve messages from Firestore database
 
+// Function to retrieve messages from Firestore database
 async function getMessagesFromDb(roomId, callback) {
     const q = query(collection(db, "chatrooms", `${roomId}`, "messages"))
     onSnapshot(q, (querySnapshot) => {
@@ -130,6 +130,45 @@ async function getMessagesFromDb(roomId, callback) {
 function updateUserProfile(userId, profileDetails) {
     const userRef = doc(db, "users", userId);
     return updateDoc(userRef, profileDetails);
+}
+
+// Function to retrieve a specific user's data from Firestore database
+async function getUserProfile(userId) {
+    const userDoc = await getDoc(doc(db, "users", userId));
+    if (userDoc.exists()) {
+        return { id: userDoc.id, ...userDoc.data() };
+    } else {
+        return null;
+    }
+}
+
+// Function to populate the form fields with user details
+async function repopulateForm(userId) {
+    const user = await getUserProfile(userId);
+    if (user) {
+        // Populate form fields with user details
+        document.getElementById('bioInp').value = user.bio || '';
+
+        // Checkbox handling
+        const availabilityCheckboxes = document.getElementsByName('days');
+        user.availability.forEach((day) => {
+            const checkbox = availabilityCheckboxes.find((chk) => chk.value === day);
+            if (checkbox) {
+                checkbox.checked = true;
+            }
+        });
+
+        // Radio button handling (example for pet type)
+        const petTypeRadios = document.getElementsByName('pettype');
+        const selectedPetType = user.petType;
+        petTypeRadios.forEach((radio) => {
+            if (radio.value === selectedPetType) {
+                radio.checked = true;
+            }
+        });
+    } else {
+        console.log('User not found.');
+    }
 }
 
 function userLogout() {
@@ -151,5 +190,6 @@ export {
     getAuth,
     app,
     updateUserProfile,
+    repopulateForm,
     auth, db
 }
