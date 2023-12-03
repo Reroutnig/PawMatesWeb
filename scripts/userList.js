@@ -29,5 +29,5 @@ window.initiateChat = async function (friendId) {
 // Function to handle user logout
 window.logout = function () {
     userLogout();
-    window.location.replace("register.html"); // Redirect to the registration page after logout
+    window.location.replace("login.html"); // Redirect to the registration page after logout
 }
