@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href="/css/navBar.css"> <!--CSS file for the navigation bar-->
+  <link rel="stylesheet" href="/css/profile.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+        <h1>PawMates</h1>
+        <ul class="nav-menu">
+            <li><a class="homeclk" href="home.html">Home</a></li>
+            <li><a class="chatclk" href="userList.html">Chat</a></li>
+            <li class="active"><a class="profileclk" href="profile.html">Profile</a></li>
+        </ul>
+        <div class="nav-right">
+            <button onclick="window.location.href='configureProfile.html'">Edit Profile</button> <!--Button to edit profile-->
+            <button onclick="logout()" class="btn btn-danger">Logout</button> <!--Logout button-->
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </div>
+  </nav>
+
+  <h1 id="userFullName"></h1>
+  
+  <script type="module" src="/config/firebase.js"></script>
+  <script type="module" src="/scripts/profile.js"></script>
+  <script>
+    //JavaScript for hamburger menu and active link
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    const activePage = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+        if (link.href.includes(`${activePage}`)) {
+            link.classList.add('active');
+        }
+    });
+  </script>
+</body>
+</html>
