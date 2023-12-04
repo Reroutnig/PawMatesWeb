@@ -1,4 +1,16 @@
-import {addUserToDb, checkUser,signUpFirebase, uploadImage} from "/config/firebase.js"
+import {addUserToDb, checkUser,signUpFirebase, checkLoggedInUser,uploadImage} from "/config/firebase.js"
+// Check if the user is logged in before allowing access to the page
+checkLoggedInUser()
+    .then((user) => {
+        // User is logged in, allow access to the page
+        console.log("User is logged in");
+        // Add your logic for allowing access here
+    })
+    .catch(() => {
+        // User is not logged in, redirect to the login page
+        console.log("User is not logged in, redirecting to login page");
+        window.location.href = "login.html"; // Redirect to login page
+    });
 
 window.signup = async function (){
     const email = document.getElementById("email").value;
@@ -31,7 +43,7 @@ window.signup = async function (){
     passwordField.classList.remove("is-invalid");
     passwordError.style.display = "none";
 
-    
+
     if (!isValidUsername) {
         // If the username doesn't contain at least 2 letters, show an error message
         usernameField.classList.add("is-invalid");
