@@ -32,5 +32,15 @@ window.login = async function(){
         }
     }
 }
+const signupButton = document.getElementById('signupButton');
+const forgotPassButton = document.getElementById('forgotPassButton');
+
+signupButton.addEventListener('click', function() {
+  window.location.href = 'register.html';
+});
+
+forgotPassButton.addEventListener('click', function() {
+  window.location.href = 'passwordRecovery.html';
+});
 
 
