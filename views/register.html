@@ -29,17 +29,28 @@
                         <div class="mb-3">
                             <input type="text" class="form-control" id="fullname" aria-describedby="emailHelp"
                                 placeholder="User Name" required>
+                            <div class="invalid-feedback" id="usernameError">
+                                Please enter a valid username.
+                            </div>
                         </div>
 
                         <div class="mb-3">
                             <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
                                 placeholder="Email" required>
+                            <div class="invalid-feedback" id="emailError">
+                                Please enter a valid email domain (e.g., @gmail.com, @yahoo.com).
+                            </div>
                         </div>
+                        
 
                         <div class="mb-3">
                             <input type="password" class="form-control" id="password" placeholder="password" required>
+                            <div class="invalid-feedback" id="passwordError">
+                                Password must contain at least 6 characters, including one letter, one number, and one special character.
+                            </div>
                         </div>
                         <div class="mb-3">
+                            <p class="selectimg">Select an image for your profile picture:</p>
                             <input type="file" class="form-control" id="image" required>
                         </div>
                         <p class="error" id="error" style="color: red;"></p>
@@ -60,4 +71,3 @@
 <script type="module" src="/config/firebase.js"></script>
 <script type="module" src="/scripts/register.js"></script>
 </html>
-

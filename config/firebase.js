@@ -168,6 +168,19 @@ async function repopulateForm(userId) {
         console.log('User not found.');
     }
 }
+function checkLoggedInUser() {
+    return new Promise((resolve, reject) => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in
+                resolve(user); // Resolve the promise with the user object
+            } else {
+                // User is signed out
+                reject(); // Reject the promise
+            }
+        });
+    });
+}
 
 function userLogout() {
     auth.signOut();
@@ -186,6 +199,7 @@ export {
     userLogout,
     sendMessageToDb,
     getMessagesFromDb,
+    checkLoggedInUser,
     sendPasswordResetEmail,
     getAuth,
     auth,
