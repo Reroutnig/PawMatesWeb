@@ -1,6 +1,5 @@
 //import functions from firebase.js
-import { sendMessageToDb,getMessagesFromDb,auth,getUsersFromDb} from "/config/firebase.js";
-
+import { sendMessageToDb,getMessagesFromDb,auth,checkUser,getUsersFromDb} from "/config/firebase.js";
 
 //gets room ID
 getRoom();
