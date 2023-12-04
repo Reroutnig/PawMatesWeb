@@ -62,7 +62,19 @@ function checkUser() {
     });
 }
 
-
+function checkLoggedInUser() {
+    return new Promise((resolve, reject) => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in
+                resolve(user); // Resolve the promise with the user object
+            } else {
+                // User is signed out
+                reject(); // Reject the promise
+            }
+        });
+    });
+}
 // Function to retrieve users' data from Firestore database
 async function getUsersFromDb() {
     const querySnapshot = await getDocs(collection(db, "users"))
@@ -141,6 +153,7 @@ export {
     userLogout,
     sendMessageToDb,
     getMessagesFromDb,
+    checkLoggedInUser,
     sendPasswordResetEmail,
     getAuth,
     app,
