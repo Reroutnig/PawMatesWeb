@@ -1,6 +1,8 @@
 import {addUserToDb, checkUser,signUpFirebase,uploadImage} from "/config/firebase.js"
 
 window.signup = async function (){
+     // Clear previous error messages and styling
+     clearErrors();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const fullname = document.getElementById("fullname").value;
@@ -46,6 +48,7 @@ window.signup = async function (){
     if (!isValidDomain) {
         // If the domain is not valid, show an error message
         document.getElementById("email").classList.add("is-invalid");
+        emailError.style.display = "block";
         return;
     }
     // Check if any input field is empty or profile image is not uploaded
@@ -86,5 +89,14 @@ window.signup = async function (){
         console.log(e.code)
     }
 }
+function clearErrors() {
+    // Clear error messages and styling for email, password, and username fields
+    document.getElementById("email").classList.remove("is-invalid");
+    document.getElementById("password").classList.remove("is-invalid");
+    document.getElementById("fullname").classList.remove("is-invalid");
 
-
+    document.getElementById("emailError").style.display = "none";
+    document.getElementById("passwordError").style.display = "none";
+    document.getElementById("usernameError").style.display = "none";
+    document.getElementById("error").innerText = "";
+}
