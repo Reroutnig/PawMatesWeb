@@ -28,7 +28,7 @@ window.login = async function(){
             //default case for other errors
                 document.getElementsByClassName("btn-outline-dark")[0].style.display = "inline-block"  
                 document.getElementsByClassName("btn-outline-dark")[1].style.display = "none" 
-                document.getElementsByClassName("error")[0].innerText = "Error"
+                document.getElementsByClassName("error")[0].innerText = "The username or password you entered is incorrect. "
         }
     }
 }
