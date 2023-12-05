@@ -195,3 +195,10 @@
   .center{
     text-align: center;
   }
+
+  .recoverTitle {
+    font-family: 'Racing Sans One';
+    font-size: 80px;
+    color: #A3C14A;
+    text-shadow: 5px 2px 0px rgba(0, 0, 0, 0.75);
+  }

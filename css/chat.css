@@ -401,6 +401,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 9px;
+  margin-right:15px;
 }
 .chatlogoutbtn button:hover{
   background-color: #F875AA;
@@ -409,7 +410,7 @@
 .chatNavBar .chatUser .profileNavbarName{
   color:white;
   gap: 10px;
-  margin-left: 70px;
+  margin-left: 85px;
   margin-top: -55px;
   font-size: large;
   padding: 8px 10px;
@@ -425,8 +426,58 @@
   width: 50px;
   height: 50px;
   margin-bottom: 15px;
+ 
 }
 /*places profile pic in van bar near logout btn*/
 .profilechatlocation{
-  margin-left: 1050px;
+  margin-left: 50px;
+}
+
+.logo{
+ 
+    font-family: 'Racing Sans One';
+    font-size: 20px;
+    color: #A3C14A;
+    text-shadow: 3px 2px 0px rgba(0, 0, 0, 0.75);
+  
+}
+.homebtn{
+  
+    outline: none;
+    height: 40px;
+    text-align: center;
+    width: 130px;
+    border-radius: 40px;
+    background: #ffd4d4;
+    border: 2px solid #b84c65;
+    color: #b84c65;
+    letter-spacing: 1px;
+    text-shadow: 0;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-left: 50px;
+  
+} 
+  button:hover {
+    color: #b84c65;
+    background: #ffffe8;
+  }
+.profilbtn{
+  outline: none;
+    height: 40px;
+    text-align: center;
+    width: 130px;
+    border-radius: 40px;
+    background: #ffd4d4;
+    border: 2px solid #b84c65;
+    color: #b84c65;
+    letter-spacing: 1px;
+    text-shadow: 0;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-left: 50px;
 }

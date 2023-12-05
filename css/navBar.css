@@ -13,7 +13,7 @@ li {
 }
 
 nav {
-  background-color: black;
+  background-color: #b84c65;
 }
 
 .nav-container {
@@ -45,7 +45,7 @@ nav {
 }
 
 .nav-menu li:hover {
-  background: #46aafc;
+  background: #A3C14A;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -98,7 +98,7 @@ nav {
     align-items: center;
     right: -100%;
     transition: 0.3s;
-    background-color: black;
+    background-color: #b84c65;
   }
 
   .nav-menu.active {

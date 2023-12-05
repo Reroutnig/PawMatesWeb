@@ -53,7 +53,7 @@ function checkUser() {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             // User is signed in
-            window.location.replace("home.html")
+            window.location.replace("/views/home.html")
 
         } else {
             return

@@ -15,7 +15,7 @@ checkLoggedInUser()
     .catch(() => {
         // User is not logged in, redirect to the login page
         console.log("User is not logged in, redirecting to login page");
-        window.location.href = "login.html"; // Redirect to login page
+        window.location.href = "/index.html"; // Redirect to login page
     });
 const db = getFirestore(app);
 

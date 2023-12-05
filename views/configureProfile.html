@@ -1,117 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editing Profile...</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/configureProfile.css" />
+  <title>Editing Profile...</title>
 </head>
+
 <body>
-    <div>
-        <form id="ProfileForm">
-            <h3>Editing Profile...</h3>
-      
-            <!--Error message-->
-            <div id="errorContainer" style="display: none; color: red;"></div>
+  <div>
+    <form id="ProfileForm" >
+      <h3 class="edit">Editing Profile...</h3>
 
-            <div>
-                <!--Images-->
-                <div>
-                    <h3>Photos:</h3>
-                    <input type="file" id="imageUpload" accept="image/*" multiple>
-                </div>
+      <!--Error message-->
+      <div id="errorContainer" style="display: none; color: red;"></div>
 
-                <!--Text area to enter bio-->
-                <div>
-                    <h3>Bio:</h3>
-                    <textarea placeholder="Write a quick bio to tell others about yourself!" id="bioInp"></textarea>
-                </div>
-                
-                <!--Checkboxes to select availability-->
-                <div>
-                    <h3>Availability:</h3>
-                    <input type="checkbox" id="monday" name="days" value="Monday">
-                    <label for="monday">Monday</label><br>
-                    <input type="checkbox" id="tuesday" name="days" value="Tuesday">
-                    <label for="tuesday">Tuesday</label><br>
-                    <input type="checkbox" id="wednesday" name="days" value="Wednesday">
-                    <label for="wednesday">Wednesday</label><br>
-                    <input type="checkbox" id="thursday" name="days" value="Thursday">
-                    <label for="thursday">Thursday</label><br>
-                    <input type="checkbox" id="friday" name="days" value="Friday">
-                    <label for="friday">Friday</label><br>
-                    <input type="checkbox" id="saturday" name="days" value="Saturday">
-                    <label for="saturday">Saturday</label><br>
-                    <input type="checkbox" id="sunday" name="days" value="Sunday">
-                    <label for="sunday">Sunday</label><br>
-                </div>
-    
-                <!--Section to get pet information-->
-                <h3>Info:</h3>
-                <!-- Pet's Type -->
-                <div>
-                    <h5>Pet Type:</h5>
-                    <input type="radio" id="cat" name="pettype" value="Cat">
-                    <label for="cat">Cat</label><br>
-                    <input type="radio" id="dog" name="pettype" value="Dog">
-                    <label for="dog">Dog</label><br>
-                    <input type="radio" id="bunny" name="pettype" value="Bunny">
-                    <label for="bunny">Bunny</label><br>
-                </div>
-    
-                <!-- Pet's Gender -->
-                <div>
-                    <h5>Gender:</h5>
-                    <input type="radio" id="female" name="gender" value="Female">
-                    <label for="female">Female</label><br>
-                    <input type="radio" id="male" name="gender" value="Male">
-                    <label for="male">Male</label><br>
-                </div>
-    
-                <!-- Pet's Age -->
-                <div>
-                    <h5>Age:</h5>
-                    <input type="text" id="petAge" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="Enter pet's age (in numbers)">
-                    <input type="radio" id="months" name="ageUnit" value="months">
-                    <label for="months">Months</label>
-                    <input type="radio" id="years" name="ageUnit" value="years">
-                    <label for="years">Years</label>
-                </div>
-    
-                <!-- Pet's Size -->
-                <div>
-                    <h5>Size:</h5>
-                    <input type="radio" id="small" name="size" value="Small">
-                    <label for="small">Small</label><br>
-                    <input type="radio" id="medium" name="size" value="Medium">
-                    <label for="medium">Medium</label><br>
-                    <input type="radio" id="large" name="size" value="Large">
-                    <label for="large">Large</label><br>
-                </div>
-    
-                <!-- Pet's Vaccination Status -->
-                <div>
-                    <h5>Vaccinated:</h5>
-                    <input type="radio" id="yes" name="vacc" value="Yes">
-                    <label for="yes">Yes</label><br>
-                    <input type="radio" id="no" name="vacc" value="No">
-                    <label for="no">No</label><br>
-                </div>
-                
-                <!-- Pet's Neutered/Spayed Status -->
-                <div>
-                    <h5>Neutered/Spayed:</h5>
-                    <input type="radio" id="yes" name="neuSpa" value="Yes">
-                    <label for="yes">Yes</label><br>
-                    <input type="radio" id="no" name="neuSpa" value="No">
-                    <label for="no">No</label><br>
-                </div>
-            </div>
-            <button type="submit" id="saveProfBtn">Save</button> <!--Button to save changes-->
-            <button type="button" id="cancelBtn">Cancel</button> <!--Button to cancel changes-->
-        </form>
-    </div>
+      <div>
+        <!--Images-->
+        <div>
+          <h3 class="edit">Photos:</h3>
+          <input type="file" id="imageUpload" accept="image/*" multiple>
+        </div>
 
-    <script type="module" src="/config/firebase.js"></script>
-    <script type="module" src="/scripts/configureProfile.js"></script>
+        <!--Text area to enter bio-->
+        <div>
+          <h3 class="edit">Bio:</h3>
+          <textarea placeholder="Write a quick bio to tell others about yourself!" id="bioInp"></textarea>
+        </div>
+
+        <!--Checkboxes to select availability-->
+        <div>
+          <h3 class="edit">Availability:</h3>
+          <input type="checkbox" id="monday" name="days" value="Monday">
+          <label for="monday">Monday</label><br>
+          <input type="checkbox" id="tuesday" name="days" value="Tuesday">
+          <label for="tuesday">Tuesday</label><br>
+          <input type="checkbox" id="wednesday" name="days" value="Wednesday">
+          <label for="wednesday">Wednesday</label><br>
+          <input type="checkbox" id="thursday" name="days" value="Thursday">
+          <label for="thursday">Thursday</label><br>
+          <input type="checkbox" id="friday" name="days" value="Friday">
+          <label for="friday">Friday</label><br>
+          <input type="checkbox" id="saturday" name="days" value="Saturday">
+          <label for="saturday">Saturday</label><br>
+          <input type="checkbox" id="sunday" name="days" value="Sunday">
+          <label for="sunday">Sunday</label><br>
+        </div>
+
+        <!--Section to get pet information-->
+        <h3 class="edit">Info:</h3>
+        <!-- Pet's Type -->
+        <div>
+          <h5>Pet Type:</h5>
+          <input type="radio" id="cat" name="pettype" value="Cat">
+          <label for="cat">Cat</label><br>
+          <input type="radio" id="dog" name="pettype" value="Dog">
+          <label for="dog">Dog</label><br>
+          <input type="radio" id="bunny" name="pettype" value="Bunny">
+          <label for="bunny">Bunny</label><br>
+        </div>
+
+        <!-- Pet's Gender -->
+        <div>
+          <h3 class="edit">Gender:</h3>
+          <input type="radio" id="female" name="gender" value="Female">
+          <label for="female">Female</label><br>
+          <input type="radio" id="male" name="gender" value="Male">
+          <label for="male">Male</label><br>
+        </div>
+
+        <!-- Pet's Age -->
+        <div>
+          <h3 class="edit">Age:</h3>
+          <input type="text" id="petAge" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+            placeholder="Enter pet's age (in numbers)">
+          <input type="radio" id="months" name="ageUnit" value="months">
+          <label for="months">Months</label>
+          <input type="radio" id="years" name="ageUnit" value="years">
+          <label for="years">Years</label>
+        </div>
+
+        <!-- Pet's Size -->
+        <div>
+          <h3 class="edit">Size:</h3>
+          <input type="radio" id="small" name="size" value="Small">
+          <label for="small">Small</label><br>
+          <input type="radio" id="medium" name="size" value="Medium">
+          <label for="medium">Medium</label><br>
+          <input type="radio" id="large" name="size" value="Large">
+          <label for="large">Large</label><br>
+        </div>
+
+        <!-- Pet's Vaccination Status -->
+        <div>
+          <h3 class="edit">Vaccinated:</h3>
+          <input type="radio" id="yes" name="vacc" value="Yes">
+          <label for="yes">Yes</label><br>
+          <input type="radio" id="no" name="vacc" value="No">
+          <label for="no">No</label><br>
+        </div>
+
+        <!-- Pet's Neutered/Spayed Status -->
+        <div>
+          <h3 class="edit">Neutered/Spayed:</h3>
+          <input type="radio" id="yes" name="neuSpa" value="Yes">
+          <label for="yes">Yes</label><br>
+          <input type="radio" id="no" name="neuSpa" value="No">
+          <label for="no">No</label><br>
+        </div>
+      </div>
+      <button type="submit" id="saveProfBtn">Save</button>
+      <!--Button to save changes-->
+      <button type="button" id="cancelBtn">Cancel</button>
+      <!--Button to cancel changes-->
+    </form>
+  </div>
+
+  <script type="module" src="/config/firebase.js"></script>
+  <script type="module" src="/scripts/configureProfile.js"></script>
 </body>
+
 </html>

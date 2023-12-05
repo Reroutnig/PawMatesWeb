@@ -3,6 +3,18 @@ import { storage, app, uploadImage } from "../config/firebase.js";
 import { ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js"
 import { getFirestore, doc, setDoc, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js"
 import {getAuth} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js"
+import { checkLoggedInUser} from "/config/firebase.js";
+
+checkLoggedInUser()
+    .then((user) => {
+        // User is logged in, allow access to the page
+        console.log("User is logged in");
+    })
+    .catch(() => {
+        // User is not logged in, redirect to the login page
+        console.log("User is not logged in, redirecting to login page");
+        window.location.href = "../index.html"; // Redirect to login page
+    });
 
 
 //get db
@@ -17,6 +29,7 @@ async function addPost() {
     //validate
     const fileSelector = document.querySelector("#pet-image");
     if (fileSelector.files.length == 0) {
+        alert("Please Select a file");
         return;
     }
 
@@ -38,7 +51,7 @@ async function addPost() {
 
     const imageRef = ref(storage, `postImages/${file.name + Math.floor(Math.random() * 6)}`);
     uploadBytes(imageRef, file).then(() => {
-        alert("Image Uploaded");
+        //alert("Image Uploaded");
     })
 
     //add data 
@@ -71,6 +84,8 @@ async function addPost() {
         ageType: ageType,
         description: desc
     });
+
+    window.location.href = '/views/home.html';
 }
 
 async function getUserName(user){

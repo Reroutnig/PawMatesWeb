@@ -2,13 +2,18 @@
 <html>
     <head>
         <title>PawMates</title>
+        <link rel="stylesheet" href="../css/createPost.css">
+        <!--Font for title-->
+        <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+        <!--Font for smaller text-->
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     </head>
     <body>
-        <h1>Create Post</h1>
+        <div class="title"><h1>Create Post</h1></div>
         <div>
             <div class="form">
-                <label for="pet-image">Add image: </label>
-                <input type="file" id="pet-image">
+                <label for="pet-image" class="imageSelect">Add image: </label>
+                <input type="file" id="pet-image" class="pet-image">
                 <br>
                 <label for="pet-name">Pet name: </label>
                 <input type="text" id="pet-name">
@@ -36,7 +41,7 @@
                 <br>
                 <label for="desc">Description: </label>
                 <textarea name="desc" id="desc" cols="30" rows="5"></textarea>
-
+                <br>
                 <button type="button" id="post">Post</button>
             </div>
 

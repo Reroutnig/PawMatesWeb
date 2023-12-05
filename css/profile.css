@@ -1,3 +1,7 @@
+body {
+  background-color: #FFFFE8;
+}
+
 .images-container {
     display: flex;
     flex-wrap: wrap;
@@ -6,8 +10,70 @@
 
 /*Resize uploaded images*/
 .images-container img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 5px; /* Optionally add border-radius for rounded corners */
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 6px solid #FFD4D4; /* Change 'your_desired_color' to the color you want */
 }
+
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Updated styles for the user full name */
+#userFullName {
+  font-family: 'Racing Sans One', sans-serif;
+  font-size: 80px;
+  color: #FFD4D4;
+  text-shadow: 5px 2px 0px rgba(0, 0, 0, 0.75);
+}
+
+/* Updated button styles */
+button {
+  font-family: 'Bebas Neue';
+  outline: none;
+  height: 50px;
+  width: 150px;
+  text-align: center;
+  padding: 0 20px;
+  border-radius: 40px;
+  background: #ffd4d4;
+  border: 2px solid #b84c65;
+  color: #b84c65;
+  letter-spacing: 1px;
+  text-shadow: 0;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  color: #b84c65;
+  background: #ffffe8;
+}
+
+button:active {
+  letter-spacing: 2px;
+}
+
+
+/* Add styling for the profile sections */
+.profile-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Adjust gap between sections */
+}
+
+.profile-section {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #A3C14A; /* Green background color */
+  color: white;
+}
+

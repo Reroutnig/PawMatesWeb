@@ -5,6 +5,7 @@
   <title>Profile</title>
   <link rel="stylesheet" href="/css/navBar.css"> <!--CSS file for the navigation bar-->
   <link rel="stylesheet" href="/css/profile.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
 <body>
   <nav>
@@ -16,8 +17,7 @@
             <li class="active"><a class="profileclk" href="profile.html">Profile</a></li>
         </ul>
         <div class="nav-right">
-            <button onclick="window.location.href='configureProfile.html'">Edit Profile</button> <!--Button to edit profile-->
-            <button onclick="logout()" class="btn btn-danger">Logout</button> <!--Logout button-->
+          <button onclick="logout()" class="btn btn-danger">Logout</button> <!--Logout button-->
             <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -27,7 +27,16 @@
     </div>
   </nav>
 
-  <h1 id="userFullName"></h1>
+  <div class="profile-container">
+    <div class="profile-header">
+      <div>
+        <h1 id="userFullName"></h1>
+      </div>
+      <div>
+        <button onclick="window.location.href='configureProfile.html'">Edit Profile</button>
+      </div>
+    </div>
+  </div>
   
   <script type="module" src="/config/firebase.js"></script>
   <script type="module" src="/scripts/profile.js"></script>

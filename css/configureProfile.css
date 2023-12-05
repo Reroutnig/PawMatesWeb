@@ -1,0 +1,36 @@
+body {
+    background-color: #ffffe8;
+    font-family: 'Bebas Neue';
+  }
+  
+  /* Updated button styles */
+  button {
+    outline: none;
+    height: 40px;
+    text-align: center;
+    width: 130px;
+    border-radius: 40px;
+    background: #ffd4d4;
+    font-family: 'Bebas Neue';
+    border: 2px solid #b84c65;
+    color: #b84c65;
+    letter-spacing: 1px;
+    text-shadow: 0;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  
+  button:hover {
+    color: #b84c65;
+    background: #ffffe8;
+  }
+  
+  button:active {
+    letter-spacing: 2px;
+  }
+  /*Editing Profile Text*/ 
+  .edit{
+    color: #b84c65;
+  }

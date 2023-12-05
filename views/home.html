@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/navBar.css" />
     <link rel="stylesheet" href="/css/home.css">
+    <!--Font for title-->
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <!--Font for smaller text-->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     
     <title>PawMates-Home</title>
 </head>
@@ -34,7 +38,7 @@
 <!-- body of home page -->
     <div>
         <div class="sort-options">
-            <label for="pet-type">Type of Animal: </label>
+            <label for="pet-type" class="filters">Type of Animal: </label>
             <select name="pet-type" id="pet-type">
                 <option value="All">All</option>
                 <option value="Dog">Dog</option>
@@ -42,7 +46,7 @@
                 <option value="Bunny">Bunny</option>
             </select>
 
-            <label for="age">Age: </label>
+            <label for="age" class="filters">Age: </label>
             <select name="age" id="age">
                 <option value="All">All</option>
                 <option value="0-12mo">0-12 Months</option>
@@ -51,14 +55,14 @@
                 <option value="10+yrs">10+ Years</option>
             </select>
 
-            <label for="pet-size">Pet Size: </label>
+            <label for="pet-size" class="filters">Pet Size: </label>
             <select name="size" id="pet-size">
                 <option value="All">All</option>
                 <option value="Small">Small</option>
                 <option value="Medium">Medium</option>
                 <option value="Large">Large</option>
             </select>
-            <button type="button" id="add-post">Add Post</button>
+            <button class="container" type="button" id="add-post">Add</button>
         </div>
         <div class="posts" id="posts">
 

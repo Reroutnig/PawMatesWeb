@@ -11,7 +11,7 @@ checkLoggedInUser()
     .catch(() => {
         // User is not logged in, redirect to the login page
         console.log("User is not logged in, redirecting to login page");
-        window.location.href = "login.html"; // Redirect to login page
+        window.location.href = "/index.html"; // Redirect to login page
     });
 
 getUsers();
@@ -64,7 +64,7 @@ async function getUsers() {
 // Function to handle user logout
 window.logout = function () {
     userLogout();
-    window.location.replace("login.html"); // Redirect to the registration page after logout
+    window.location.replace("/index.html"); // Redirect to the registration page after logout
 }
 // Function to initiate a chat with a specific user and redirect to the chat page
 window.initiateChat = async function (friendId) {

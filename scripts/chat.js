@@ -121,3 +121,15 @@ async function getMessages() {
 }
 //retrieves and display messages from firestore database
 getMessages();
+
+
+const homeButton = document.getElementById('homebtnid');
+const profileButton = document.getElementById('profilebtnid');
+
+homeButton.addEventListener('click', function() {
+  window.location.href = '/views/home.html';
+});
+
+profileButton.addEventListener('click', function() {
+  window.location.href = '/views/profile.html';
+});

@@ -179,3 +179,118 @@ color:#2671ff;
     box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     fill: white;
 }
+
+body {
+    background-image: url("background.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+  }
+  .titlereg{
+    font-family: 'Racing Sans One';
+    font-size: 80px;
+    color: #A3C14A;
+    text-shadow: 5px 2px 0px rgba(0, 0, 0, 0.75);
+    margin-left: 30px;
+  }
+  .regtitle{
+    color: #b84c65;
+    font-family: 'Bebas Neue';
+    font-size: 30px;
+    margin-left: 55px;
+  }
+  .signupbtn{
+    font-family: 'Bebas Neue';
+    font-size: 20px;
+    width: 140px;
+    height: 60px;
+    text-align: center;
+    color: #b84c65;
+    margin-left: 60px;
+  }
+  /* Updated button styles with animation class */
+  button {
+    outline: none;
+    height: 40px;
+    text-align: center;
+    width: 130px;
+    border-radius: 40px;
+    background: #ffd4d4;
+    border: 2px solid #b84c65;
+    color: #b84c65;
+    letter-spacing: 1px;
+    text-shadow: 0;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  
+  button:hover {
+    color: #b84c65;
+    background: #ffffe8;
+  }
+  
+  button:active {
+    letter-spacing: 2px;
+  }
+  /*Email input*/
+  input[type=email] {
+    font-size: 15px;
+    font-family: 'Bebas Neue';
+    background-color: #FFFFE8;
+    width: 250px;
+    height: 35px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 0;
+    margin-left:230px;
+    
+  }
+  
+  input[type=password] {
+    font-size: 15px;
+    font-family: 'Bebas Neue';
+    background-color: #FFFFE8;
+    width: 250px;
+    height: 35px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 0;
+    margin-left:230px;
+    
+  }
+  input[type=text] {
+    font-size: 15px;
+    font-family: 'Bebas Neue';
+    background-color: #FFFFE8;
+    width: 250px;
+    height: 35px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 0;
+    margin-left:230px;
+    
+  }
+  input[type=file] {
+    font-size: 15px;
+    font-family: 'Bebas Neue';
+    background-color: #FFFFE8;
+    width: 250px;
+    height: 35px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 0;
+    margin-left:230px;
+    
+  }
+  .selectimg{
+    font-family: 'Bebas Neue';
+    margin-left: 80px;
+  }
+  .already{
+    font-family: 'Bebas Neue';
+    margin-left: 65px;
+  }
