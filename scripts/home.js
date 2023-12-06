@@ -1,4 +1,5 @@
 
+import { auth, userLogout, getUsersFromDb } from '/config/firebase.js';
 import { storage, app, uploadImage } from "../config/firebase.js";
 import { ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js"
 import { getFirestore, doc, setDoc, collection, getDocs, addDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js"
@@ -124,3 +125,9 @@ function inRange(postAge, selectAge, ageType){
         return false;
     }
 }
+
+//Function to handle user logout
+window.logout = function () {
+    userLogout();
+    window.location.replace("/index.html"); //Redirect to the login page after logout
+  }
