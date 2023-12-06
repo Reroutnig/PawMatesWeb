@@ -76,3 +76,17 @@ label{
   margin-right: 0;
   float: right;
 }
+/*PawMates on Navbar*/
+.light-green {
+  font-family: 'Racing Sans One';
+  font-size: 50px;
+  color: #A3C14A;
+  text-shadow: 5px 2px 0px rgba(0, 0, 0, 0.75);
+}
+
+.dark-green {
+  font-family: 'Racing Sans One';
+  font-size: 50px;
+  color: #68902B;
+  text-shadow: 5px 2px 0px rgba(0, 0, 0, 0.75);
+}

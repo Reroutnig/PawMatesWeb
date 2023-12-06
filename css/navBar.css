@@ -56,8 +56,6 @@ nav {
   gap: 2rem;
 }
 
-
-
 .bar {
   background-color: white;
   display: block;
@@ -142,4 +140,10 @@ nav {
 }
 .homeclk{
     color:white;
+}
+
+/*Home Profile and Chat Navbar*/
+ul{
+  font-family: 'Bebas Neue';
+  font-size: 25px;
 }
