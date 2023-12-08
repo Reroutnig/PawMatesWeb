@@ -41,33 +41,32 @@ async function displayUserFullName() {
 //Function to display user's uploaded photos on the profile page
 async function displayUserPhotos() {
   try {
-      auth.onAuthStateChanged(async (currentUser) => {
-          if (currentUser) {
-              const users = await getUsersFromDb();
-              const user = users.find(u => u.userId === currentUser.uid);
+    auth.onAuthStateChanged(async (currentUser) => {
+      if (currentUser) {
+        const users = await getUsersFromDb();
+        const user = users.find(u => u.userId === currentUser.uid);
 
-              if (user && user.images && user.images.length > 0) {
-                  const imagesContainer = document.createElement('div');
-                  imagesContainer.classList.add('images-container');
+        if (user && user.images && user.images.length > 0) {
+          const imagesContainer = document.querySelector('.images-container');
 
-                  user.images.forEach(imageUrl => {
-                      const imgElement = document.createElement('img');
-                      imgElement.src = imageUrl;
-                      imagesContainer.appendChild(imgElement);
-                  });
-
-                  document.body.appendChild(imagesContainer);
-              } else {
-                  console.log('User has no uploaded images');
-              }
-          } else {
-              console.log('No user logged in');
-          }
-      });
+          user.images.forEach(imageUrl => {
+            const imgElement = document.createElement('img');
+            imgElement.src = imageUrl;
+            imgElement.classList.add('user-photo'); // Optionally, add a class for styling
+            imagesContainer.appendChild(imgElement);
+          });
+        } else {
+          console.log('User has no uploaded images');
+        }
+      } else {
+        console.log('No user logged in');
+      }
+    });
   } catch (error) {
-      console.error('Error fetching user images:', error);
+    console.error('Error fetching user images:', error);
   }
 }
+
 
 //Function to display user bio on the profile page
 async function displayUserBio() {
@@ -79,20 +78,9 @@ async function displayUserBio() {
 
         if (user) {
           const userBio = user.bio || 'No bio available';
-          const bioElement = document.createElement('p');
+          const bioElement = document.getElementById('userBio');
           bioElement.textContent = `Bio: ${userBio}`;
-          bioElement.style.fontFamily = "Bebas Neue";
-          bioElement.style.fontSize = '25px';
-          bioElement.style.backgroundColor = '#68902B';
-          bioElement.style.color = 'white';
-          bioElement.style.padding = '10px';
-          bioElement.style.borderRadius = '10px';
-          bioElement.style.display = 'inline-block';
-          document.body.appendChild(bioElement);
-
-          const spacerElement = document.createElement('div');
-          spacerElement.style.height = '20px';
-          document.body.appendChild(spacerElement);
+          bioElement.classList.add('bio-details');
         } else {
           console.log('User data not found');
         }
@@ -117,20 +105,9 @@ async function displayUserAvailability() {
 
         if (user && user.availability) {
           const availabilityText = `Availability: ${user.availability.join(', ')}`;
-          const availabilityElement = document.createElement('p');
+          const availabilityElement = document.getElementById('userAvailability');
           availabilityElement.textContent = availabilityText;
-          availabilityElement.style.fontFamily = "Bebas Neue";
-          availabilityElement.style.fontSize = '25px';
-          availabilityElement.style.backgroundColor = '#68902B';
-          availabilityElement.style.color = 'white';
-          availabilityElement.style.padding = '10px';
-          availabilityElement.style.borderRadius = '10px';
-          availabilityElement.style.display = 'inline-block';
-          document.body.appendChild(availabilityElement);
-
-          const spacerElement = document.createElement('div');
-          spacerElement.style.height = '20px';
-          document.body.appendChild(spacerElement);
+          availabilityElement.classList.add('avail-details');
         } else {
           console.log('User data or availability not found');
         }
@@ -151,20 +128,9 @@ async function displayUserPetType() {
         const users = await getUsersFromDb();
         const user = users.find(u => u.userId === currentUser.uid);
 
-        const petTypeElement = document.createElement('p');
+        const petTypeElement = document.getElementById('petType');
         petTypeElement.textContent = user && user.petType ? `Pet Type: ${user.petType}` : 'Pet Type: Not available';
-        petTypeElement.style.fontFamily = "Bebas Neue";
-        petTypeElement.style.fontSize = '25px';
-        petTypeElement.style.backgroundColor = '#68902B';
-        petTypeElement.style.color = 'white';
-        petTypeElement.style.padding = '10px';
-        petTypeElement.style.borderRadius = '10px';
-        petTypeElement.style.display = 'inline-block';
-        document.body.appendChild(petTypeElement);
-
-        const spacerElement = document.createElement('div');
-        spacerElement.style.height = '20px';
-        document.body.appendChild(spacerElement);
+        petTypeElement.classList.add('pet-type-details');
       } else {
         console.log('No user logged in');
       }
@@ -182,20 +148,9 @@ async function displayUserGender() {
         const users = await getUsersFromDb();
         const user = users.find(u => u.userId === currentUser.uid);
 
-        const genderElement = document.createElement('p');
+        const genderElement = document.getElementById('petGender');
         genderElement.textContent = user && user.gender ? `Gender: ${user.gender}` : 'Gender: Not available';
-        genderElement.style.fontFamily = "Bebas Neue";
-        genderElement.style.fontSize = '25px';
-        genderElement.style.backgroundColor = '#68902B';
-        genderElement.style.color = 'white';
-        genderElement.style.padding = '10px';
-        genderElement.style.borderRadius = '10px';
-        genderElement.style.display = 'inline-block';
-        document.body.appendChild(genderElement);
-
-        const spacerElement = document.createElement('div');
-        spacerElement.style.height = '20px';
-        document.body.appendChild(spacerElement);
+        genderElement.classList.add('gender-details');
       } else {
         console.log('No user logged in');
       }
@@ -213,20 +168,9 @@ async function displayUserAge() {
         const users = await getUsersFromDb();
         const user = users.find(u => u.userId === currentUser.uid);
 
-        const ageElement = document.createElement('p');
+        const ageElement = document.getElementById('petAge');
         ageElement.textContent = user && user.age ? `Age: ${user.age}` : 'Age: Not available';
-        ageElement.style.fontFamily = "Bebas Neue";
-        ageElement.style.fontSize = '25px';
-        ageElement.style.backgroundColor = '#68902B';
-        ageElement.style.color = 'white';
-        ageElement.style.padding = '10px';
-        ageElement.style.borderRadius = '10px';
-        ageElement.style.display = 'inline-block';
-        document.body.appendChild(ageElement);
-
-        const spacerElement = document.createElement('div');
-        spacerElement.style.height = '20px';
-        document.body.appendChild(spacerElement);
+        ageElement.classList.add('age-details');
       } else {
         console.log('No user logged in');
       }
@@ -244,20 +188,9 @@ async function displayUserSize() {
         const users = await getUsersFromDb();
         const user = users.find(u => u.userId === currentUser.uid);
 
-        const sizeElement = document.createElement('p');
+        const sizeElement = document.getElementById('petSize');
         sizeElement.textContent = user && user.size ? `Size: ${user.size}` : 'Size: Not available';
-        sizeElement.style.fontFamily = "Bebas Neue";
-        sizeElement.style.fontSize = '25px';
-        sizeElement.style.backgroundColor = '#68902B';
-        sizeElement.style.color = 'white';
-        sizeElement.style.padding = '10px';
-        sizeElement.style.borderRadius = '10px';
-        sizeElement.style.display = 'inline-block';
-        document.body.appendChild(sizeElement);
-
-        const spacerElement = document.createElement('div');
-          spacerElement.style.height = '20px';
-          document.body.appendChild(spacerElement);
+        sizeElement.classList.add('size-details');
       } else {
         console.log('No user logged in');
       }
@@ -275,20 +208,9 @@ async function displayUserVaccinationStatus() {
         const users = await getUsersFromDb();
         const user = users.find(u => u.userId === currentUser.uid);
 
-        const vaccStatusElement = document.createElement('p');
+        const vaccStatusElement = document.getElementById('petVacc');
         vaccStatusElement.textContent = user && user.vaccinated ? `Vaccinated: ${user.vaccinated}` : 'Vaccinated: Not available';
-        vaccStatusElement.style.fontFamily = "Bebas Neue";
-        vaccStatusElement.style.fontSize = '25px';
-        vaccStatusElement.style.backgroundColor = '#68902B';
-        vaccStatusElement.style.color = 'white';
-        vaccStatusElement.style.padding = '10px';
-        vaccStatusElement.style.borderRadius = '10px';
-        vaccStatusElement.style.display = 'inline-block';
-        document.body.appendChild(vaccStatusElement);
-
-        const spacerElement = document.createElement('div');
-          spacerElement.style.height = '20px';
-          document.body.appendChild(spacerElement);
+        vaccStatusElement.classList.add('vacc-details');
       } else {
         console.log('No user logged in');
       }
@@ -306,16 +228,9 @@ async function displayUserNeuteredSpayedStatus() {
         const users = await getUsersFromDb();
         const user = users.find(u => u.userId === currentUser.uid);
 
-        const neuSpaStatusElement = document.createElement('p');
+        const neuSpaStatusElement = document.getElementById('petNeuSpay');
         neuSpaStatusElement.textContent = user && user.neuteredSpayed ? `Neutered/Spayed: ${user.neuteredSpayed}` : 'Neutered/Spayed: Not available';
-        neuSpaStatusElement.style.fontFamily = "Bebas Neue";
-        neuSpaStatusElement.style.fontSize = '25px';
-        neuSpaStatusElement.style.backgroundColor = '#68902B';
-        neuSpaStatusElement.style.color = 'white';
-        neuSpaStatusElement.style.padding = '10px';
-        neuSpaStatusElement.style.borderRadius = '10px';
-        neuSpaStatusElement.style.display = 'inline-block';
-        document.body.appendChild(neuSpaStatusElement);
+        neuSpaStatusElement.classList.add('neuSpay-details');
       } else {
         console.log('No user logged in');
       }

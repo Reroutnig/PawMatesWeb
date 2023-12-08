@@ -15,25 +15,24 @@
   height: 20px;
   text-align: center;
 } */
+/* Updated button styles */
 button {
+  font-family: 'Bebas Neue';
   outline: none;
-  height: 30px;
-  width: 100px;
+  height: 50px;
+  width: 150px;
   text-align: center;
-  padding: 0 20px; /* Adjust padding as needed */
+  padding: 0 20px;
   border-radius: 40px;
-  /* background: #ffd4d4; */
-  background-color: #CDE990;
+  background: #ffd4d4;
   border: 2px solid #b84c65;
   color: #b84c65;
   letter-spacing: 1px;
   text-shadow: 0;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.25s ease;
-  font-family: 'Bebas Neue';
-  font-size: 20px;
 }
 
 button:hover {
@@ -44,6 +43,7 @@ button:hover {
 button:active {
   letter-spacing: 2px;
 }
+
 .sort-options{
   margin: 30px;
 }

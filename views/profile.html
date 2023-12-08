@@ -5,19 +5,27 @@
   <title>Profile</title>
   <link rel="stylesheet" href="/css/navBar.css"> <!--CSS file for the navigation bar-->
   <link rel="stylesheet" href="/css/profile.css" />
+  <!--Font for title-->
+  <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+  <!--Font for smaller text-->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Navigation bar structure -->
   <nav>
     <div class="nav-container">
-        <h1>PawMates</h1>
+        <span class="light-green">Paw<span class="dark-green">Mates</span></span>
+        <!-- Navigation menu -->
         <ul class="nav-menu">
-            <li><a class="homeclk" href="home.html">Home</a></li>
+            <li class="active"><a class="homeclk" href="home.html">Home</a></li>
             <li><a class="chatclk" href="userList.html">Chat</a></li>
-            <li class="active"><a class="profileclk" href="profile.html">Profile</a></li>
+            <li><a class="profileclk" href="profile.html">Profile</a></li>
         </ul>
+        <!--Logout Button-->
         <div class="nav-right">
-          <button onclick="logout()" class="btn btn-danger">Logout</button> <!--Logout button-->
+            <button onclick="logout()" class="btn btn-danger">Logout</button>
+        <!-- Hamburger menu for mobile view -->
+        <div class="nav-right">
             <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -27,7 +35,9 @@
     </div>
   </nav>
 
+  <!--Everything after the nav bar-->
   <div class="profile-container">
+    <!--Username and edit profile button-->
     <div class="profile-header">
       <div>
         <h1 id="userFullName"></h1>
@@ -36,27 +46,46 @@
         <button onclick="window.location.href='configureProfile.html'">Edit Profile</button>
       </div>
     </div>
+    <!--Images-->
+    <div class="images-container"></div>
+    <!--Bio-->
+    <div class="bio-container">
+      <div class="bio-details" id="userBio"></div>
+    </div>
+    <!--Availabilty-->
+    <div class="avail-container">
+      <div class="avail-details" id="userAvailability"></div>
+    </div>
+    <!--Pet Type-->
+    <div class="type-container">
+      <div class="pet-type-details" id="petType"></div>
+    </div>
+    <!--Gender-->
+    <div class="gender-container">
+      <div class="gender-details" id="petGender"></div>
+    </div>
+    <!--Age-->
+    <div class="age-container">
+      <div class="age-details" id="petAge"></div>
+    </div>
+    <!--Size-->
+    <div class="size-container">
+      <div class="size-details" id="petSize"></div>
+    </div>
+    <!--Vaccination Status-->
+    <div class="vacc-container">
+      <div class="vacc-details" id="petVacc"></div>
+    </div>
+    <!--Neutered/Spayed Status-->
+    <div class="neuSpay-container">
+      <div class="neuSpay-details" id="petNeuSpay"></div>
+    </div>
   </div>
+  
   
   <script type="module" src="/config/firebase.js"></script>
   <script type="module" src="/scripts/profile.js"></script>
-  <script>
-    //JavaScript for hamburger menu and active link
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
+<script defer src="navbar.js"></script>
 
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-
-    const activePage = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-menu a');
-    navLinks.forEach(link => {
-        if (link.href.includes(`${activePage}`)) {
-            link.classList.add('active');
-        }
-    });
-  </script>
 </body>
 </html>

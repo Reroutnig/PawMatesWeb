@@ -2,27 +2,27 @@ body {
   background-color: #FFFFE8;
 }
 
-.images-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px; /*Adjust gap between images*/
+/*PawMates on Navbar*/
+.light-green {
+  font-family: 'Racing Sans One';
+  font-size: 50px;
+  color: #A3C14A;
+  text-shadow: 5px 2px 0px rgba(0, 0, 0, 0.75);
 }
 
-/*Resize uploaded images*/
-.images-container img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 5px;
-  border: 6px solid #FFD4D4; /* Change 'your_desired_color' to the color you want */
+.dark-green {
+  font-family: 'Racing Sans One';
+  font-size: 50px;
+  color: #68902B;
+  text-shadow: 5px 2px 0px rgba(0, 0, 0, 0.75);
 }
 
-
+/*Username and edit profile button*/
 .profile-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 20px; 
 }
 
 /* Updated styles for the user full name */
@@ -33,7 +33,34 @@ body {
   text-shadow: 5px 2px 0px rgba(0, 0, 0, 0.75);
 }
 
-/* Updated button styles */
+
+
+/*Images*/
+.images-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.images-container img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin: 10px;
+  border: 10px double #b84c65;
+  padding: 5px;
+  border-radius: 25px;
+  background-image: linear-gradient(45deg, #b84c65, #f7a9c5);
+}
+
+@media (max-width: 430px) {
+  .images-container img {
+      width: calc(50% - 5px); /* Adjust width for smaller screens */
+  }
+}
+
+/*Button styles*/
 button {
   font-family: 'Bebas Neue';
   outline: none;
@@ -47,7 +74,7 @@ button {
   color: #b84c65;
   letter-spacing: 1px;
   text-shadow: 0;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -62,18 +89,163 @@ button:active {
   letter-spacing: 2px;
 }
 
-
-/* Add styling for the profile sections */
-.profile-sections {
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* Adjust gap between sections */
+/*Bio*/
+.bio-container {
+  background-color:#A3C14A;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 20px;
+  display: inline-block;
 }
 
-.profile-section {
+/* Add styling for the bio-details section */
+.bio-details {
+  font-family: "Bebas Neue";
+  font-size: 25px;
+  background-color: #68902B;
+  color: white;
   padding: 10px;
   border-radius: 10px;
-  background-color: #A3C14A; /* Green background color */
-  color: white;
+  display: inline-block;
+  margin: 5px;
 }
 
+/*Availability*/
+.avail-container {
+  background-color:#A3C14A;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.avail-details {
+  font-family: "Bebas Neue";
+  font-size: 25px;
+  background-color: #68902B;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 5px;
+}
+
+/*Pet Type*/
+.type-container {
+  background-color:#A3C14A;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.pet-type-details {
+  font-family: "Bebas Neue";
+  font-size: 25px;
+  background-color: #68902B;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 5px;
+}
+
+/*Gender*/
+.gender-container {
+  background-color:#A3C14A;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.gender-details {
+  font-family: "Bebas Neue";
+  font-size: 25px;
+  background-color: #68902B;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 5px;
+}
+
+/*Age*/
+.age-container {
+  background-color:#A3C14A;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.age-details {
+  font-family: "Bebas Neue";
+  font-size: 25px;
+  background-color: #68902B;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 5px;
+}
+
+/*Size*/
+.size-container {
+  background-color:#A3C14A;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.size-details {
+  font-family: "Bebas Neue";
+  font-size: 25px;
+  background-color: #68902B;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 5px;
+}
+
+/*Vaccination Status*/
+.vacc-container {
+  background-color:#A3C14A;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.vacc-details {
+  font-family: "Bebas Neue";
+  font-size: 25px;
+  background-color: #68902B;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 5px;
+}
+
+/*Neutered/Spayed Status*/
+.neuSpay-container {
+  background-color:#A3C14A;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.neuSpay-details {
+  font-family: "Bebas Neue";
+  font-size: 25px;
+  background-color: #68902B;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 5px;
+}
