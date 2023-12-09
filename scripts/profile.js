@@ -52,7 +52,6 @@ async function displayUserPhotos() {
           user.images.forEach(imageUrl => {
             const imgElement = document.createElement('img');
             imgElement.src = imageUrl;
-            imgElement.classList.add('user-photo'); // Optionally, add a class for styling
             imagesContainer.appendChild(imgElement);
           });
         } else {
@@ -79,7 +78,7 @@ async function displayUserBio() {
         if (user) {
           const userBio = user.bio || 'No bio available';
           const bioElement = document.getElementById('userBio');
-          bioElement.textContent = `Bio: ${userBio}`;
+          bioElement.textContent = `${userBio}`;
           bioElement.classList.add('bio-details');
         } else {
           console.log('User data not found');
@@ -104,7 +103,7 @@ async function displayUserAvailability() {
         const user = users.find(u => u.userId === currentUser.uid);
 
         if (user && user.availability) {
-          const availabilityText = `Availability: ${user.availability.join(', ')}`;
+          const availabilityText = `${user.availability.join(', ')}`;
           const availabilityElement = document.getElementById('userAvailability');
           availabilityElement.textContent = availabilityText;
           availabilityElement.classList.add('avail-details');
@@ -129,7 +128,7 @@ async function displayUserPetType() {
         const user = users.find(u => u.userId === currentUser.uid);
 
         const petTypeElement = document.getElementById('petType');
-        petTypeElement.textContent = user && user.petType ? `Pet Type: ${user.petType}` : 'Pet Type: Not available';
+        petTypeElement.textContent = user && user.petType ? `${user.petType}` : 'Not available';
         petTypeElement.classList.add('pet-type-details');
       } else {
         console.log('No user logged in');
@@ -149,7 +148,7 @@ async function displayUserGender() {
         const user = users.find(u => u.userId === currentUser.uid);
 
         const genderElement = document.getElementById('petGender');
-        genderElement.textContent = user && user.gender ? `Gender: ${user.gender}` : 'Gender: Not available';
+        genderElement.textContent = user && user.gender ? `${user.gender}` : 'Not available';
         genderElement.classList.add('gender-details');
       } else {
         console.log('No user logged in');
@@ -169,7 +168,7 @@ async function displayUserAge() {
         const user = users.find(u => u.userId === currentUser.uid);
 
         const ageElement = document.getElementById('petAge');
-        ageElement.textContent = user && user.age ? `Age: ${user.age}` : 'Age: Not available';
+        ageElement.textContent = user && user.age ? `${user.age}` : 'Not available';
         ageElement.classList.add('age-details');
       } else {
         console.log('No user logged in');
