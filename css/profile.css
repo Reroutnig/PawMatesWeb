@@ -33,19 +33,24 @@ body {
   text-shadow: 5px 2px 0px rgba(0, 0, 0, 0.75);
 }
 
-
-
-/*Images*/
+/*Images container*/
 .images-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
+  background-color: #FFD4D4;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px;
+  justify-content: center;
+  overflow: hidden;
 }
 
+/*Border around the images*/
 .images-container img {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
   margin: 10px;
   border: 10px double #b84c65;
@@ -69,6 +74,7 @@ button {
   text-align: center;
   padding: 0 20px;
   border-radius: 40px;
+  margin: 10px;
   background: #ffd4d4;
   border: 2px solid #b84c65;
   color: #b84c65;
@@ -89,8 +95,21 @@ button:active {
   letter-spacing: 2px;
 }
 
-/*Bio*/
-.bio-container {
+/*Title of details*/
+.details-title {
+  font-family: "Bebas Neue";
+  font-size: 35px;
+  background-color: #d17c90;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-flexbox;
+  text-align: center;
+  margin: 5px;
+}
+
+/*Details container*/
+.details-container {
   background-color:#A3C14A;
   padding: 5px;
   margin: 10px;
@@ -98,154 +117,104 @@ button:active {
   display: inline-block;
 }
 
-/* Add styling for the bio-details section */
+/*Bio*/
 .bio-details {
   font-family: "Bebas Neue";
-  font-size: 25px;
+  font-size: 30px;
   background-color: #68902B;
   color: white;
   padding: 10px;
   border-radius: 10px;
-  display: inline-block;
+  text-align: center;
   margin: 5px;
 }
 
 /*Availability*/
-.avail-container {
-  background-color:#A3C14A;
-  padding: 5px;
-  margin: 10px;
-  border-radius: 20px;
-  display: inline-block;
-}
-
 .avail-details {
   font-family: "Bebas Neue";
-  font-size: 25px;
+  font-size: 30px;
   background-color: #68902B;
   color: white;
   padding: 10px;
   border-radius: 10px;
-  display: inline-block;
+  text-align: center;
   margin: 5px;
 }
 
 /*Pet Type*/
-.type-container {
-  background-color:#A3C14A;
-  padding: 5px;
-  margin: 10px;
-  border-radius: 20px;
-  display: inline-block;
-}
-
 .pet-type-details {
   font-family: "Bebas Neue";
-  font-size: 25px;
+  font-size: 30px;
   background-color: #68902B;
   color: white;
   padding: 10px;
   border-radius: 10px;
-  display: inline-block;
+  text-align: center;
   margin: 5px;
 }
 
 /*Gender*/
-.gender-container {
-  background-color:#A3C14A;
-  padding: 5px;
-  margin: 10px;
-  border-radius: 20px;
-  display: inline-block;
-}
-
 .gender-details {
   font-family: "Bebas Neue";
-  font-size: 25px;
+  font-size: 30px;
   background-color: #68902B;
   color: white;
   padding: 10px;
   border-radius: 10px;
-  display: inline-block;
+  text-align: center;
   margin: 5px;
 }
 
 /*Age*/
-.age-container {
-  background-color:#A3C14A;
-  padding: 5px;
-  margin: 10px;
-  border-radius: 20px;
-  display: inline-block;
-}
-
 .age-details {
   font-family: "Bebas Neue";
-  font-size: 25px;
+  font-size: 30px;
   background-color: #68902B;
   color: white;
   padding: 10px;
   border-radius: 10px;
-  display: inline-block;
+  text-align: center;
   margin: 5px;
 }
 
 /*Size*/
-.size-container {
-  background-color:#A3C14A;
-  padding: 5px;
-  margin: 10px;
-  border-radius: 20px;
-  display: inline-block;
-}
-
 .size-details {
   font-family: "Bebas Neue";
-  font-size: 25px;
+  font-size: 30px;
   background-color: #68902B;
   color: white;
   padding: 10px;
   border-radius: 10px;
-  display: inline-block;
+  text-align: center;
   margin: 5px;
 }
 
 /*Vaccination Status*/
-.vacc-container {
-  background-color:#A3C14A;
-  padding: 5px;
-  margin: 10px;
-  border-radius: 20px;
-  display: inline-block;
-}
-
 .vacc-details {
   font-family: "Bebas Neue";
-  font-size: 25px;
+  font-size: 30px;
   background-color: #68902B;
   color: white;
   padding: 10px;
   border-radius: 10px;
-  display: inline-block;
+  text-align: center;
   margin: 5px;
 }
 
 /*Neutered/Spayed Status*/
-.neuSpay-container {
-  background-color:#A3C14A;
-  padding: 5px;
-  margin: 10px;
-  border-radius: 20px;
-  display: inline-block;
-}
-
 .neuSpay-details {
   font-family: "Bebas Neue";
-  font-size: 25px;
+  font-size: 30px;
   background-color: #68902B;
   color: white;
   padding: 10px;
   border-radius: 10px;
-  display: inline-block;
+  text-align: center;
   margin: 5px;
+}
+
+.pair-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
